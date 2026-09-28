@@ -1,0 +1,6 @@
+import time
+
+start = time.time()
+print(f"42^84 = {42**84} \n\n" ) 
+print(f"42^168 = {42**168} \n\n" ) 
+print(time.time() - start)
