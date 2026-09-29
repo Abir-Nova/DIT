@@ -33,7 +33,7 @@ def hangman(attempts, max_penalties, word_length):
     # choose a random word
 
     target = random.choice(words)
-    target_lenght=len(target)
+    target_length=len(target)
 
     penalties = 0
     guessed_letters=[]
@@ -54,7 +54,7 @@ def hangman(attempts, max_penalties, word_length):
         print(f"\ntarget:{display_target(target,guessed_letters)}\n")
         print(f"{attempts} attempts left \n ")
         print(f"{penalties} penalty \n ")
-        print(f"the word has {target_lenght} letters \n ")
+        print(f"the word has {target_length} letters \n ")
         
         # take a guess 
         choice = int (input("to guess a letter tap 1 to guess the target tap 2 : "))
