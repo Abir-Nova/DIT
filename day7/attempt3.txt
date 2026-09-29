@@ -1,0 +1,54 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20260929122814
+Nom d'utilisateur : ABOURA\abirn
+Utilisateur runAs :  ABOURA\abirn
+Nom de la configuration : 
+Ordinateur : ABOURA (Microsoft Windows NT 10.0.26200.0)
+Application hôte : C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command try { . "c:\Users\abirn\AppData\Local\Programs\Microsoft VS Code\04c0d99f4f\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1" } catch {}
+ID de processus : 33388
+PSVersion: 5.1.26100.9444
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9444
+BuildVersion: 10.0.26100.9444
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcription démarrée, le fichier de sortie est .\attempt3.txt
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cabirn\x5cOneDrive\x5cDesktop\x5cpool_delivery\x5cepitech DITPS C:\Users\abirn\OneDrive\Desktop\pool_delivery\epitech DIT> ]633;B
+PS>cd day7
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cabirn\x5cOneDrive\x5cDesktop\x5cpool_delivery\x5cepitech DIT\x5cday7PS C:\Users\abirn\OneDrive\Desktop\pool_delivery\epitech DIT\day7> ]633;B
+PS>py hangman_improved.py --attempts 10 --penalties 20 --length 5
+2 attempts left
+
+0 penalty
+
+the word has 5 letters
+
+to guess a letter tap 1 to guess the target tap 2 : 1
+
+guess a letter:  t
+
+wrong
+
+target:fli__
+
+1 attempts left
+
+0 penalty
+
+the word has 5 letters
+
+to guess a letter tap 1 to guess the target tap 2 : 2
+
+guess the word: fling
+
+u won    the word was fling
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cabirn\x5cOneDrive\x5cDesktop\x5cpool_delivery\x5cepitech DIT\x5cday7PS C:\Users\abirn\OneDrive\Desktop\pool_delivery\epitech DIT\day7> ]633;B
+PS>Stop-Transcript
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20260929133251
+**********************
