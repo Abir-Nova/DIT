@@ -1,5 +1,6 @@
 import random
 import argparse
+import time
 from english_words import english_words_lower_set
 
 # display the word , the attempts , penalties 
@@ -37,12 +38,24 @@ def hangman(attempts, max_penalties, word_length):
     penalties = 0
     guessed_letters=[]
 
+    # set a timer 
+
+    start_time = time.time()
+    time_limit = 120  # 120 seconds
+
     while attempts>0 and penalties < max_penalties :
+        elapsed_time = time.time() - start_time
+        remaining_time = int(time_limit - elapsed_time)
+        if remaining_time <= 0:
+            print("\nTime's up!")
+            print(f"you lost - the word was {target}")
+            return
+        print(f"\nTime left: {remaining_time} seconds")
         print(f"\ntarget:{display_target(target,guessed_letters)}\n")
         print(f"{attempts} attempts left \n ")
         print(f"{penalties} penalty \n ")
         print(f"the word has {target_lenght} letters \n ")
-
+        
         # take a guess 
         choice = int (input("to guess a letter tap 1 to guess the target tap 2 : "))
 
@@ -114,10 +127,13 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-
 # If no length is specified, choose a random word of any length
 if args.length is None:
     target = random.choice(list(english_words_lower_set))
     hangman(args.attempts, args.penalties, len(target))
 else:
     hangman(args.attempts, args.penalties, args.length)
+
+
+
+
