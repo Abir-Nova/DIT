@@ -1,0 +1,57 @@
+PS C:\Users\abirn\OneDrive\Desktop\pool_delivery\epitech DIT> python -u "c:\Users\abirn\OneDrive\Desktop\pool_delivery\epitech DIT\day7\bonus_tasks\task2 building blocks\tempCodeRunnerFile.py"
+the shuffled word isuoosrmfe
+
+Word: ________
+Attempts: 10
+Penalties: 0
+Guess the next letter, the whole word, or ? for a hint: f
+Correct!
+Attempts left: 10
+the shuffled word isuoosrmfe
+
+Word: f_______
+Attempts: 10
+Penalties: 0
+Guess the next letter, the whole word, or ? for a hint: o
+Correct!
+Attempts left: 10
+the shuffled word isuoosrmfe
+
+Word: fo______
+Attempts: 10
+Penalties: 0
+Guess the next letter, the whole word, or ? for a hint: u
+Correct!
+Attempts left: 10
+the shuffled word isuoosrmfe
+
+Word: fou_____
+Attempts: 10
+Penalties: 0
+Guess the next letter, the whole word, or ? for a hint: s
+Wrong position!
+Attempts left: 9
+the shuffled word isuoosrmfe
+
+Word: fou_____
+Attempts: 9
+Penalties: 0
+Guess the next letter, the whole word, or ? for a hint: m
+Wrong position!
+Attempts left: 8
+the shuffled word isuoosrmfe
+
+Word: fou_____
+Attempts: 8
+Penalties: 0
+Guess the next letter, the whole word, or ? for a hint: r
+Correct!
+Attempts left: 8
+the shuffled word isuoosrmfe
+
+Word: four____
+Attempts: 8
+Penalties: 0
+Guess the next letter, the whole word, or ? for a hint: foursome 
+correct
+u have 8 attempts left

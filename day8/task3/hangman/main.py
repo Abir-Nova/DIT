@@ -9,7 +9,7 @@ screen = pygame.display.set_mode((600, 600))
 background = pygame.image.load("assets/bg.jpg") # load the background image into pygame --> we store it in the background variable
 
 screen.blit(background, (0, 0)) 
-# draw/copy this image onto the screen at this position --> (0,0) means the top-left corner 
+# draw/copy this image onto the screen at this position <--> (0,0) means the top-left corner 
 #Draw background onto screen, starting at position (0, 0)
 
 # Function to draw the stickman 
