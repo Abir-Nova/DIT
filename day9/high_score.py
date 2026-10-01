@@ -1,6 +1,7 @@
 import random
 import argparse
 import time
+from datetime import date
 
 def load_words(filename):
     try:
@@ -36,7 +37,7 @@ def load_words(filename):
     except OSError:
         print(f"Error: could not read file '{filename}'.")
         return None
-
+        
 # display the word , the attempts , penalties 
 
 def display_target(target,guessed_letters):
@@ -118,6 +119,8 @@ def display_stats(history):
 
 def hangman(attempts, max_penalties,words, word_length):
     
+    original_attempts = attempts
+
     if word_length is not None:
         words = [
             word
@@ -150,7 +153,8 @@ def hangman(attempts, max_penalties,words, word_length):
             return { 
                 "word": target, 
                 "won": False, 
-                "penalties": penalties 
+                "penalties": penalties, 
+                "attempts": original_attempts - attempts
             }
             
         print(f"\nTime left: {remaining_time} seconds")
@@ -181,7 +185,7 @@ def hangman(attempts, max_penalties,words, word_length):
                 
                 hint = random.choice(hints)
                 guessed_letters.append(hint)
-                display_target(target,guessed_letters)
+                print(display_target(target, guessed_letters))
                     
         elif choice == '1':
             guess= input("\nguess a letter:  ").lower()
@@ -213,7 +217,8 @@ def hangman(attempts, max_penalties,words, word_length):
                 return { 
                     "word": target, 
                     "won": True, 
-                    "penalties": penalties 
+                    "penalties": penalties,
+                    "attempts": original_attempts - attempts
                 }
             print("wrong word")
             penalties +=5
@@ -229,7 +234,8 @@ def hangman(attempts, max_penalties,words, word_length):
             return { 
                 "word": target, 
                 "won": True, 
-                "penalties": penalties 
+                "penalties": penalties,
+                "attempts": original_attempts - attempts
             }
 
         # Check if the player lost
@@ -239,8 +245,50 @@ def hangman(attempts, max_penalties,words, word_length):
             return { 
                 "word": target, 
                 "won": False, 
-                "penalties": penalties 
+                "penalties": penalties,
+                 "attempts": original_attempts - attempts 
             }
+
+def check_high_score(result):
+    filename = "high_scores.txt"
+
+    today = date.today().isoformat()
+
+    attempts = result["attempts"]
+    word = result["word"]
+
+    high_score = None
+    high_score_date = None
+
+    try:
+        with open(filename, "r") as file:
+            for line in file:
+                parts = line.strip().split(",")
+
+                if len(parts) != 2:
+                    continue
+
+                score = int(parts[0])
+                score_date = parts[1]
+
+                if high_score is None or score < high_score:
+                    high_score = score
+                    high_score_date = score_date
+
+    except FileNotFoundError:
+        pass
+
+    if high_score is None or attempts < high_score:
+        with open(filename, "a") as file:
+            file.write(f"{attempts},{today}\n")
+
+        print(f"Best ever! You guessed '{word}' in {attempts} attempts.")
+
+    else:
+        print(
+            f"You guessed '{word}' in {attempts} attempts, "
+            f"but the record from {high_score_date} is {high_score} attempts."
+        )
 
 # Parse command-line arguments
 parser = argparse.ArgumentParser(description="Play a customizable Hangman game.")
@@ -296,7 +344,10 @@ while True:
 
     # Store the result 
     if result is not None: 
-        history.append(result) 
+        history.append(result)
+
+        if result["won"]:
+            check_high_score(result) 
     
     # Ask if the player wants another game 
     play_again = input("\nPlay again? (yes/no): ").lower() 
