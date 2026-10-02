@@ -1,7 +1,7 @@
 import random
 import time
 
-numbers = [random.randint(1, 6000) for i in range(1000000)]
+numbers = [random.randint(1, 6000) for i in range(10000)]
 
 start = time.time()
 numbers.sort()

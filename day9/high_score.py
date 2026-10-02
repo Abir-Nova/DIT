@@ -190,6 +190,10 @@ def hangman(attempts, max_penalties,words, word_length):
         elif choice == '1':
             guess= input("\nguess a letter:  ").lower()
 
+            if not guess.isalpha():
+                print("Please enter letters only.")
+                continue
+
             # check if the user entered more than one letter
             if len(guess) != 1:
                 print("\nPlease enter only one letter.")
