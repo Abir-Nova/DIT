@@ -1,0 +1,5 @@
+ls -lah
+
+# -l = long format
+# -a = include hidden files
+# -h = human-readable sizes
