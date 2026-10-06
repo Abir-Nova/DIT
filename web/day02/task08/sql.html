@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL</title>
+    <link rel="stylesheet" href="codingpedia.css">
+</head>
+
+<body>
+    <header class="box">
+        <h1>Welcome to SQL </h1>
+        <nav class="box">
+            <ul>
+                <li><a href="index.html">Index</a></li>
+                <li><a href="php.html">PHP</a></li>
+                <li><a href="sql.html">SQL</a></li>
+            </ul>     
+        </nav>
+    </header>
+
+    <main class="box">
+
+        <!-- Article 1: SQL Description -->
+        <article>
+            <p>
+                <abbr title="Structured Query Language">SQL</abbr> 
+                (pronounced /ˌɛsˌkjuˈɛl/ S-Q-L; 
+                or alternatively as /ˈsiːkwəl/ ⓘ "sequel")[4][5] 
+                is a domain-specific language used to manage data, especially in a relational database management system (RDBMS). 
+                It is particularly useful in handling structured data, i.e., data incorporating relations among entities and variables.[6]
+            </p>
+        </article>
+
+        <!-- Article 2: table -->
+        <article>
+            <table>
+                <caption> Course planing </caption>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Description</th>
+                        <th>Grade obtained</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>SQL101</td>
+                        <td>A quick introduction to the SQL language</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td>SQL join</td>
+                        <td>Discovery of JOIN to combine rows from multiple tables</td>
+                        <td>13</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <!-- Article 3: Comments -->
+        <article>
+            <ul>
+                <li>SQL is essential for working with relational databases.</li>
+                <li>It makes it possible to search and retrieve specific data.</li>
+                <li>SQL can be used to insert, modify, and delete data.</li>
+                <li>It provides commands for creating and modifying database structures.</li>
+                <li>SQL is widely used in web applications and business applications.</li>
+                <li>Its syntax is relatively simple and readable for beginners.</li>
+            </ul>
+        </article>
+
+        <!-- Article 4: Code examples -->
+        <article>
+            <ol>
+                <li>
+                    <h3>Select data</h3>
+                    <pre><code>
+                        SELECT *
+                        FROM users;
+                    </code></pre>
+                </li>
+
+                <li>
+                    <h3>Insert data</h3>
+                    <pre><code>
+                        INSERT INTO users (name, age)
+                        VALUES ('Abir', 22);
+                    </code></pre>
+                </li>
+
+                <li>
+                    <h3>Update data</h3>
+                    <pre><code>
+                        UPDATE users
+                        SET age = 23
+                        WHERE name = 'Abir';
+                    </code></pre>
+                </li>
+
+                <li>
+                    <h3>Delete data</h3>
+                    <pre><code>
+                        DELETE FROM users
+                        WHERE name = 'Abir';
+                    </code></pre>
+                </li>
+
+                <li>
+                    <h3>Filter data</h3>
+                    <pre><code>
+                        SELECT name, age
+                        FROM users
+                        WHERE age >= 18;
+                    </code></pre>
+                </li>
+
+                <li>
+                    <h3>Create a table</h3>
+                    <pre><code>
+                        CREATE TABLE users (
+                            id INT PRIMARY KEY,
+                            name VARCHAR(100),
+                            age INT
+                        );
+                    </code></pre>
+                </li>
+            </ol>
+        </article>
+    </main>
+
+    <aside class="box">
+        <blockquote>
+            <p>
+                Peace begins when we stop trying to hold everything in our hands. 
+                Love teaches us to cherish what stays, 
+                wisdom teaches us to accept what leaves, 
+                and time reminds us that every season has its own beauty. 
+                In the end, a gentle heart is one of life's greatest treasures.
+            </p>
+            <cite>— Unknown writer</cite>
+        </blockquote>
+    </aside>
+
+    <footer class="box">
+        <address>
+            <p>Abir NASSIF</p>
+            <p>RUE JEAN LEBLOND, Franconville La Garenne</p>
+            <p>Phone: +212 690137848</p>
+        </address>
+    </footer>
+</body>
+</html>

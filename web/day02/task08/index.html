@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodingPedia</title>
+    <link rel="stylesheet" href="codingpedia.css">
+</head>
+<body>
+    <header class="box">
+        <h1>Welcome to CodingPedia</h1>
+        <nav class="box">
+            <ul>
+                <li><a href="index.html">Index</a></li>
+                <li><a href="php.html">PHP</a></li>
+                <li><a href="sql.html">SQL</a></li>
+            </ul>  
+        </nav>
+    </header>
+
+    <div class="content">
+        <main class="box" >
+            <p>
+                CodingPedia is a collective encyclopedia project on the Internet aiming to be universal and multi-lingual
+                which functions as a wiki.
+                <br> 
+                CodingPedia has for goal to offer freely reusable objective and verifiable content that anyone can modify
+                and improve.
+            </p>
+
+            <!-- Form -->
+            <form action="URL" method="post">
+                <!-- First name required -->
+                <label for="firstName">First name</label>
+                <input type="text" name="firstName" id="firstName" placeholder="first name" required>
+                <!-- last name required -->
+                <label for="lastName">Last name</label>
+                <input type="text" name="lastName" id="lastName" placeholder="last name" required>
+                <!-- Email required -->
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="email" required>
+                <!-- Phone - 10 chars-->
+                <label for="phone">phone number</label>
+                <input type="tel" name="phone" id="phone" placeholder="phone number" maxlength="10">
+                <!-- Age - minimum 3, maximum 99 years old -->
+                <label for="age">age</label>
+                <input type="number" name="age" id="age" placeholder="age" min="3" max="99">
+                <!--Sex - radio , 1 choice , "male" default and female-->
+                <fieldset>
+                    <legend>Sex</legend>
+                    <input type="radio" id="male" name="sex" value="male" checked>
+                    <label for="male">male</label>
+                    <input type="radio" id="female" name="sex" value="female"> 
+                    <label for="female">female</label>
+                </fieldset>
+                <!-- Hair color - color picker -->
+                <label for="haircolor">hair color </label>   
+                <input type="color" name="hairColor" id="hairColor">
+                <!-- Date required -->
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date" required>
+                <!-- Technology - drop down list  -->
+                <label>Technology</label>
+                <select name="technology" id="technology">
+                    <option value="PHP">PHP</option>
+                    <option value="SQL">SQL</option>
+                </select>
+                <!-- question required+no size limit -->
+                <label for="question">Your question</label>
+                <textarea name="question" id="question" placeholder="ask a question" required></textarea>
+                <!-- Submit -->
+                <button type="submit" id="submit">Submit</button><br><br>
+            </form>
+        </main>
+
+        <aside class="box">
+            <h2>About me </h2>
+            <p>
+                Hello I'm Abir NASSIF a student , entrepreneur and a virtual assistant. 
+                <br>
+                I’m passionate about exploring new adventures, discovering new places, and enjoying the great outdoors through camping.
+            </p>
+        </aside>
+        
+    </div>
+
+    <footer class="box">
+        <address>
+            <p> Abir NASSIF </p>
+            <p> RUE JEAN LEBLOND , Franconville La garenne </p>
+            <p>Phone: +212 690137848</p>
+        </address>
+    </footer>
+    <!-- task08 : moving square -->
+    <div class="moving_square">
+    </div>
+</body>
+</html>

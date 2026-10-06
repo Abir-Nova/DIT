@@ -1,0 +1,118 @@
+.box {
+    border: 2px solid black;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
+}
+
+body{
+    background-color: grey;
+}
+
+.content {
+    display:flex;
+}
+
+main{
+    width:80%;
+}
+
+aside {
+    width:20%;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+}
+
+
+/*task08 : moving square*/
+
+/* Select the div with the "moving_square" class */
+.moving_square {
+
+    /* Set the width of the square to 100 pixels */
+    width: 100px;
+
+    /* Set the height of the square to 100 pixels */
+    height: 100px;
+
+    /* Set the initial background color of the square to red */
+    background-color: red;
+
+    /* Specify the name of the animation that will be used */
+    animation-name: moveSquare;
+
+    /* Set the duration of one complete animation cycle to 5 seconds */
+    animation-duration: 5s;
+
+    /* Repeat the complete animation cycle 5 times */
+    animation-iteration-count: 5;
+
+    /* Center the square horizontally */
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+/* Define the different steps of the "moveSquare" animation */
+@keyframes moveSquare {
+
+    /* 0% represents the beginning of the animation */
+    0% {
+
+        /* Keep the square at its original position */
+        /* translate(X, Y): X = horizontal movement, Y = vertical movement */
+        /* 0px horizontally and 0px vertically means no movement */
+        transform: translate(0, 0);
+
+        /* The square starts with a red background */
+        background-color: red;
+    }
+
+    /* 25% represents one quarter of the 5-second animation */
+    25% {
+
+        /* Move the square 0px horizontally and 300px vertically */
+        /* Positive Y moves the square downward */
+        transform: translate(0, 300px);
+
+        /* Change the square's color to green */
+        background-color: green;
+    }
+
+    /* 50% represents the middle of the animation */
+    50% {
+
+        /* Move 300px horizontally and 300px vertically from the start */
+        /* Positive X moves the square to the right */
+        /* Positive Y keeps it 300px below the starting position */
+        transform: translate(300px, 300px);
+
+        /* Change the square's color to blue */
+        background-color: blue;
+    }
+
+    /* 75% represents three quarters of the animation */
+    75% {
+
+        /* Move the square 300px to the right and back to 0px vertically */
+        /* The square therefore moves 300px upward */
+        transform: translate(300px, 0);
+
+        /* Change the square's color to yellow */
+        background-color: yellow;
+    }
+
+    /* 100% represents the end of the animation */
+    100% {
+
+        /* Return the square to its original position */
+        transform: translate(0, 0);
+
+        /* Return the square to its original red color */
+        background-color: red;
+    }
+}
