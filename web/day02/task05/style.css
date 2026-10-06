@@ -1,0 +1,608 @@
+/* Selects EVERY HTML element on the page */
+* {
+    /* Makes width/height include padding and border.
+       This makes sizing elements easier to control. */
+    box-sizing: border-box;
+}
+
+
+/* BODY */
+
+body {
+    /* Removes the browser's default margin around the page */
+    margin: 0;
+
+    /* Sets the font used by the page */
+    font-family: Arial, sans-serif;
+
+    /* Sets the background color of the whole page */
+    background-color: #f5eee8;
+
+    /* Sets the default text color */
+    color: #3d2925;
+
+    /* Sets the distance between lines of text.
+       1.6 means the line height is 1.6 times the font size. */
+    line-height: 1.6;
+}
+
+
+/* HEADER */
+
+header {
+    /* Dark burgundy background */
+    background-color: #6b2638;
+
+    /* Makes the text inside the header white */
+    color: white;
+
+    /* Adds space INSIDE the header.
+       25px = top/bottom
+       60px = left/right */
+    padding: 25px 60px;
+
+    /* Makes the header a flex container.
+       Flexbox helps us position its children. */
+    display: flex;
+
+    /* Puts the title on one side
+       and the navigation on the other side */
+    justify-content: space-between;
+
+    /* Vertically centers the title and navigation */
+    align-items: center;
+}
+
+
+/* Selects h1 elements that are INSIDE the header */
+header h1 {
+    /* Removes the browser's default margin around h1 */
+    margin: 0;
+
+    /* Makes the title 30 pixels large */
+    font-size: 30px;
+}
+
+
+/* NAVIGATION */
+
+/* Selects the <ul> inside <nav> */
+nav ul {
+    /* Removes the bullet points from the list */
+    list-style: none;
+
+    /* Places the list items horizontally */
+    display: flex;
+
+    /* Creates 25px of space between each link */
+    gap: 25px;
+
+    /* Removes the default margin of the <ul> */
+    margin: 0;
+
+    /* Removes the default padding of the <ul> */
+    padding: 0;
+}
+
+
+/* Selects all <a> links inside the navigation */
+nav a {
+    /* Makes the links white */
+    color: white;
+
+    /* Removes the default underline */
+    text-decoration: none;
+
+    /* Makes the links bold */
+    font-weight: bold;
+}
+
+
+/* NAVIGATION HOVER */
+
+/* Applies these styles when the mouse is
+   placed over a navigation link */
+nav a:hover {
+    /* Changes the link color when the mouse is over it */
+    color: #f4b6a6;
+}
+
+
+/* MAIN */
+
+main {
+    /* Prevents the main content from becoming
+       wider than 1100 pixels */
+    max-width: 1100px;
+
+    /* 40px = top/bottom margin
+       auto = automatically centers the element horizontally */
+    margin: 40px auto;
+
+    /* Adds 25px of space on the left and right */
+    padding: 0 25px;
+}
+
+
+/* ARTICLES */
+
+article {
+    /* Gives each article a white background */
+    background-color: white;
+
+    /* Adds 30px of space BELOW each article */
+    margin-bottom: 30px;
+
+    /* Adds 30px of space INSIDE each article */
+    padding: 30px;
+
+    /* Rounds the corners */
+    border-radius: 12px;
+
+    /* Creates a soft shadow around the article */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Selects ONLY the first article */
+article:first-child {
+    /* Adds a 6px burgundy/pink line on the left */
+    border-left: 6px solid #d9826b;
+}
+
+
+/* Selects the third article */
+article:nth-child(3) {
+    /* Adds a dark burgundy line on the left */
+    border-left: 6px solid #6b2638;
+}
+
+
+/* Selects the fourth article */
+article:nth-child(4) {
+    /* Adds a salmon-colored line on the left */
+    border-left: 6px solid #d9826b;
+}
+
+
+/* Selects <ul> elements inside articles */
+article ul {
+    /* Adds 25px of space on the left.
+       This gives room for the bullet points. */
+    padding-left: 25px;
+}
+
+
+/* Selects <li> elements inside articles */
+article li {
+    /* Adds 10px of space below each list item */
+    margin-bottom: 10px;
+}
+
+
+/* HEADINGS */
+
+h3 {
+    /* Makes h3 headings burgundy */
+    color: #6b2638;
+
+    /* Removes the default space above the h3 */
+    margin-top: 0;
+}
+
+
+/* ABBREVIATIONS */
+
+abbr {
+    /* Makes the abbreviation burgundy */
+    color: #6b2638;
+
+    /* Makes the abbreviation bold */
+    font-weight: bold;
+
+    /* Adds a dotted underline */
+    text-decoration: underline dotted;
+
+    /* Changes the mouse cursor to a help cursor.
+       Usually this indicates that additional information
+       is available. */
+    cursor: help;
+}
+
+
+/* CODE BLOCKS */
+
+/* Selects <pre> elements : these contain PHP/SQL examples here */
+pre {
+    /* Dark background for the code */
+    background-color: #292526;
+
+    /* Light text for the code */
+    color: #f8eee9;
+
+    /* Adds space INSIDE the code block */
+    padding: 20px;
+
+    /* Rounds the corners */
+    border-radius: 8px;
+
+    /* Adds horizontal scrolling if the code
+       is wider than the screen */
+    overflow-x: auto;
+
+    /* Sets the code text size */
+    font-size: 14px;
+}
+
+
+/* Selects <code> elements */
+code {
+    /* Uses a monospace font.
+       Every character has the same width,
+       which is useful for programming code. */
+    font-family: Consolas, monospace;
+}
+
+
+/* ASIDE */
+
+aside {
+    /* Prevents the aside from becoming
+       wider than 1000px */
+    max-width: 1000px;
+
+    /* Centers the aside horizontally
+       and gives it 40px top/bottom margin */
+    margin: 40px auto;
+
+    /* Adds 25px of space on the left and right */
+    padding: 0 25px;
+}
+
+
+/* BLOCKQUOTE */
+
+blockquote {
+    /* Removes the default blockquote margin */
+    margin: 0;
+
+    /* Adds space inside the quotation */
+    padding: 30px 40px;
+
+    /* Gives the quotation a light background */
+    background-color: #ead4cc;
+
+    /* Adds a 6px burgundy line on the left */
+    border-left: 6px solid #6b2638;
+
+    /* Rounds the corners */
+    border-radius: 10px;
+
+    /* Makes the quotation italic */
+    font-style: italic;
+
+    /* Sets the text color */
+    color: #4a302b;
+}
+
+
+/* CITATION */
+
+cite {
+    /* Makes <cite> behave like a block.
+       This means it appears on its own line. */
+    display: block;
+
+    /* Adds 15px of space above the citation */
+    margin-top: 15px;
+
+    /* Makes the citation bold */
+    font-weight: bold;
+
+    /* Removes italic styling from <cite> */
+    font-style: normal;
+
+    /* Moves the citation to the right */
+    text-align: right;
+
+    /* Makes the citation burgundy */
+    color: #6b2638;
+}
+
+
+/* FOOTER */
+
+footer {
+    /* Dark brown background */
+    background-color: #3d2925;
+
+    /* Makes footer text white */
+    color: white;
+
+    /* Adds space inside the footer */
+    padding: 30px 60px;
+
+    /* Adds 50px of space above the footer */
+    margin-top: 50px;
+}
+
+
+/* ADDRESS */
+
+address {
+    /* Removes the default italic style
+       normally associated with <address> */
+    font-style: normal;
+}
+
+
+/* Selects <p> elements inside <address> */
+address p {
+    /* Adds 5px of space above and below
+       each paragraph */
+    margin: 5px 0;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+/* These rules apply only when the screen width
+   is 700px or smaller.
+
+   This is useful for phones and small tablets. */
+@media (max-width: 700px) {
+
+
+    /* MOBILE HEADER */
+
+    header {
+        /* Changes the flex direction from horizontal
+           to vertical */
+        flex-direction: column;
+
+        /* Adds 20px between the title and navigation */
+        gap: 20px;
+
+        /* Centers the text */
+        text-align: center;
+
+        /* Reduces the header's horizontal padding */
+        padding: 25px;
+    }
+
+
+    /* MOBILE NAVIGATION */
+
+    nav ul {
+        /* Allows navigation links to move
+           to another line if necessary */
+        flex-wrap: wrap;
+
+        /* Centers the navigation links */
+        justify-content: center;
+    }
+
+
+    /* MOBILE MAIN */
+
+    main {
+        /* Reduces the vertical margin on small screens */
+        margin: 20px auto;
+    }
+
+
+    /* MOBILE ARTICLES */
+
+    article {
+        /* Reduces the inside spacing
+           to give more room on small screens */
+        padding: 20px;
+    }
+
+
+    /* MOBILE CODE */
+
+    pre {
+        /* Makes code slightly smaller on phones */
+        font-size: 12px;
+    }
+
+
+    /* MOBILE FOOTER */
+
+    footer {
+        /* Reduces footer padding on small screens */
+        padding: 25px;
+    }
+
+}
+
+
+/* TABLE */
+/* Styles the entire table */
+table {
+    width: 100%;                    /* Makes the table take the full available width */
+    border-collapse: collapse;     /* Removes the space between table borders */
+    margin: 25px 0;                /* Adds 25px of space above and below the table */
+    background-color: white;       /* Sets a white background for the table */
+    border: 2px solid #6b2638;     /* Adds a 2px burgundy border around the table */
+}
+
+/* Styles the table caption */
+caption {
+    caption-side: top;             /* Places the caption above the table */
+    font-size: 24px;                /* Makes the caption text larger */
+    font-weight: bold;              /* Makes the caption text bold */
+    color: #6b2638;                 /* Uses the same burgundy color as the header */
+    margin-bottom: 15px;            /* Adds space between the caption and the table */
+}
+
+/* Styles the table header section */
+thead {
+    background-color: #6b2638;      /* Gives the header a burgundy background */
+    color: white;                   /* Makes the header text white */
+}
+
+/* Styles both header cells and normal cells */
+th,
+td {
+    padding: 15px;                  /* Adds space inside each cell */
+    border: 1px solid #c9aaa0;     /* Adds a soft brown border around each cell */
+    text-align: center;               /* Aligns the text to the center */
+}
+
+/* Styles the header cells */
+th {
+    font-weight: bold;              /* Makes the header text bold */
+}
+
+/* Styles every even row in the table body */
+tbody tr:nth-child(even) {
+    background-color: #f5eee8;     /* Uses the same beige color as the page */
+}
+
+/* Changes the row background when the mouse is over it */
+tbody tr:hover {
+    background-color: #ead8d0;      /* Gives the row a slightly darker beige color */
+}
+
+
+/* form */
+/* Styles the entire form */
+
+form {
+    max-width: 700px;              /* Limits the width of the form */
+    margin: 40px auto;             /* Centers the form horizontally and adds vertical space */
+    padding: 30px;                 /* Adds space inside the form */
+    background-color: white;       /* Gives the form a white background */
+    border: 2px solid #6b2638;     /* Adds a burgundy border around the form */
+    border-radius: 10px;            /* Rounds the corners of the form */
+    box-shadow: 0 4px 10px rgba(61, 41, 37, 0.15); /* Adds a soft shadow */
+}
+
+/* LABELS */
+/* Styles all labels inside the form */
+
+form label {
+    display: block;                /* Places each label on its own line */
+    margin-bottom: 7px;            /* Adds space between the label and its input */
+    color: #3d2925;                /* Uses the same brown as the body text */
+    font-weight: bold;             /* Makes labels easier to read */
+}
+
+
+/* TEXT INPUTS */
+/* Styles text, email, telephone and number inputs */
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form input[type="number"],
+form input[type="date"],
+form select,
+form textarea {
+    width: 100%;                   /* Makes the fields use the full form width */
+    padding: 12px;                 /* Adds space inside the fields */
+    margin-bottom: 18px;           /* Adds space between form fields */
+    border: 1px solid #c9aaa0;     /* Adds a soft brown border */
+    border-radius: 6px;             /* Slightly rounds the corners */
+    background-color: #f5eee8;     /* Uses the same beige as the page */
+    color: #3d2925;                /* Sets the text color to brown */
+    font-size: 16px;               /* Makes the text comfortable to read */
+    font-family: Arial, sans-serif; /* Uses the same font as the rest of the page */
+}
+
+/* Changes the appearance when the user clicks inside a field */
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="tel"]:focus,
+form input[type="number"]:focus,
+form input[type="date"]:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;                 /* Removes the browser's default outline */
+    border: 2px solid #6b2638;     /* Highlights the field with burgundy */
+    background-color: white;       /* Makes the active field white */
+}
+
+
+
+/* PLACEHOLDER TEXT */
+/* Styles the placeholder text */
+form input::placeholder,
+form textarea::placeholder {
+    color: #8b7068;                /* Uses a softer brown for placeholder text */
+    opacity: 1;                    /* Keeps the placeholder clearly visible */
+}
+
+
+
+/* TEXTAREA */
+/* Gives the question box more vertical space */
+form textarea {
+    min-height: 140px;             /* Makes the textarea tall enough for a question */
+    resize: vertical;              /* Allows the user to resize it vertically */
+}
+
+
+/* RADIO BUTTONS */
+/* Styles the fieldset containing the radio buttons */
+form fieldset {
+    margin-bottom: 20px;           /* Adds space below the radio section */
+    padding: 15px;                 /* Adds space inside the fieldset */
+    border: 1px solid #c9aaa0;     /* Adds a soft brown border */
+    border-radius: 6px;             /* Rounds the corners */
+}
+
+/* Styles the title of the radio-button group */
+form legend {
+    padding: 0 8px;                /* Adds horizontal space around the text */
+    color: #6b2638;                /* Uses burgundy for the legend */
+    font-weight: bold;             /* Makes the legend bold */
+}
+
+
+/* Prevents radio labels from taking the entire line */
+form input[type="radio"] + label {
+    display: inline;               /* Keeps the label next to the radio button */
+    margin-right: 20px;            /* Adds space between the two choices */
+    font-weight: normal;           /* Makes radio labels normal weight */
+}
+
+
+/* COLOR PICKER */
+/* Styles the hair-color input */
+form input[type="color"] {
+    width: 70px;                   /* Sets the width of the color picker */
+    height: 45px;                  /* Sets the height of the color picker */
+    margin-bottom: 18px;           /* Adds space below the color picker */
+    padding: 3px;                  /* Adds a small inner space */
+    border: 1px solid #c9aaa0;     /* Adds a soft brown border */
+    border-radius: 6px;             /* Rounds the corners */
+    background-color: white;       /* Gives the picker a white background */
+    cursor: pointer;               /* Shows that the color picker is clickable */
+}
+
+/* SUBMIT BUTTON */
+/* Styles the submit button */
+form button[type="submit"] {
+    width: 100%;                   /* Makes the button as wide as the form */
+    padding: 13px;                 /* Adds space inside the button */
+    border: none;                  /* Removes the default button border */
+    border-radius: 6px;             /* Rounds the button corners */
+    background-color: #6b2638;     /* Uses burgundy as the button background */
+    color: white;                  /* Makes the button text white */
+    font-size: 16px;               /* Sets the button text size */
+    font-weight: bold;             /* Makes the button text bold */
+    cursor: pointer;               /* Shows that the button is clickable */
+}
+
+/* Changes the button when the mouse is over it */
+form button[type="submit"]:hover {
+    background-color: #3d2925;     /* Changes the button to brown */
+}
+
+/* Changes the button while it is being clicked */
+form button[type="submit"]:active {
+    transform: scale(0.98);         /* Makes the button slightly smaller when clicked */
+}
+
