@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP</title>
+    <link rel="stylesheet" href="codingpedia.css">
+</head>
+
+<body>
+    <header class="box">
+        <h1>Welcome to PHP</h1>
+        <nav class="box">
+            <ul>
+                <li><a href="index.html">Index</a></li>
+                <li><a href="php.html">PHP</a></li>
+                <li><a href="sql.html">SQL</a></li>
+            </ul>     
+        </nav>
+    </header>
+
+    <main class="box">
+        <!-- Article 1: PHP Description -->
+        <article>
+            <abbr title="PHP:Hypertext Preprocessor">PHP</abbr> is a general-purpose scripting language geared towards web development.[11] 
+            It was created by Danish-Canadian programmer Rasmus Lerdorf in 1993 and released in 1995.[12][13] 
+            The PHP reference implementation is now produced by the PHP Group.[14] 
+            PHP was originally an abbreviation of Personal Home Page, but it now stands for the recursive backronym PHP: Hypertext Preprocessor.[15]: 14 
+        </article>
+
+        <!-- Article 2: table -->
+        <article>
+            <table>
+                <caption> Course planing </caption>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Description</th>
+                        <th>Grade obtained</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>PHP101</td>
+                        <td>Introduction to the language and syntax</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>OOP in PHP</td>
+                        <td>How to do Object-Oriented Programming in PHP</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <!-- Article 3: Comments -->
+        <article>
+            <ul>
+                <li>PHP is a popular server-side scripting language used to create dynamic websites.</li>
+                <li>PHP can be embedded directly into HTML.</li>
+                <li>It is relatively easy to learn for beginners.</li>
+                <li>PHP can work with databases such as MySQL.</li>
+                <li>It is widely used for web applications and content management systems.</li>
+                <li>PHP code runs on the server, and the result is sent to the user's browser.</li>
+            </ul>
+        </article>
+
+        <!-- Article 4: Code examples -->
+        <article>
+            <ol>
+                <li>
+                    <h3>Hello world</h3> 
+                    <pre><code>
+                        &lt;?php echo "Hello World"; ?&gt;
+                    </code></pre>
+                </li>
+                
+                <li>
+                    <h3>Variables</h3>
+                    <pre><code>
+                        &lt;?php
+                            $name = "Abir";
+                            $age = 22;
+
+                            echo "My name is $name and I am $age years old.";
+                        ?&gt;
+                    </code></pre>
+                </li>
+            
+                <li>
+                    <h3>Condition</h3>
+                    <pre><code>
+                        &lt;?php
+                            $age = 22;
+
+                            if ($age >= 18) {
+                                echo "You are an adult.";
+                            } else {
+                                echo "You are a minor.";
+                            }
+                        ?&gt;
+                    </code></pre>
+                </li>
+                
+                <li>
+                    <h3>Loop</h3>
+                    <pre><code>
+                        &lt;?php
+                            for ($i = 1; $i &lt;= 5; $i++) {
+                                echo $i . "&lt;br&gt;";
+                            }
+                        ?&gt;
+                    </code></pre>
+                </li>
+
+                <li>
+                    <h3>Function</h3>
+                    <pre><code>
+                        &lt;?php
+                            function greet($name) {
+                                return "Hello, " . $name . "!";
+                            }
+
+                            echo greet("Abir");
+                        ?&gt;
+                    </code></pre>
+                </li>
+                
+                <li>
+                    <h3>PHP inside HTML</h3>
+                    <pre><code>
+                        <h1>My PHP Page</h1>
+                        &lt;?php
+                            $name = "Abir";
+                            echo "<p>Hello $name!</p>";
+                        ?&gt;
+                    </code></pre>
+                </li>
+            </ol>
+        </article>
+    </main>
+
+    <aside class="box">
+        <blockquote>
+            <!-- citation tag -->
+            Life is not measured by how far we travel, <br>
+            but by how deeply we feel. <br>
+            There is beauty in quiet mornings, <br>
+            in unexpected encounters, <br>
+            and in the people who make our hearts feel at home. <br>
+            Sometimes, the most meaningful moments are the ones we never planned.
+            <cite> Unknown writer </cite>
+        </blockquote>
+    </aside>
+
+    <footer>
+        <address>
+            <p> Abir NASSIF </p>
+            <p> RUE JEAN LEBLOND , Franconville La garenne </p>
+            <p>Phone: +212 690137848</p>
+        </address>
+    </footer>
+
+</body>
+</html>
