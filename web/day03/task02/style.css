@@ -1,0 +1,110 @@
+/* the browser normally adds a default matgin around body*/ 
+
+body {
+    margin: 0; /* removes this margin to prevent unexpected white space around the page  */
+}
+
+*{
+    box-sizing: border-box; /* means that the width and height of an element inslude its padding and border -> this makes it easier to control the size if our blocks */
+}
+
+/* mobile layout */
+
+@media screen and (max-width:767px) {
+
+    /*body*/
+    body{
+        width: 100%; /* make the body take the full width available*/
+        height: 100%;
+        display: flex;
+        flex-direction: column; /* children are placed vertically */
+        margin: 0;
+        gap: 10px;
+        min-height: 100%;
+        overflow-x: hidden; /*Prevent anything from creating horizontal scrolling outside the screen*/
+    }
+
+    /*header*/
+
+    header{
+        background-color: #67B3DD;
+        width: 100%; /*Make the header use the entire available width*/
+        padding:20px; /*Add space inside the header around the text*/
+    }
+
+    header nav{
+        width: 100%; /* make the navigation use the complete width of the header */
+    }
+
+    #section1{
+        background-color: #9EE062; 
+        width: 100%;/*Make the section occupy the full width*/
+        padding:20px /*Add space around section 1*/ 
+    }
+
+    #section2{
+        background-color: #FEDF6B ;
+        width: 100%;/*Make section 2 take the full width of the screen*/
+        display: flex;
+        flex-direction: column;
+        gap:0;
+        padding:20px;
+        flex:1;
+    }
+
+    /*articles*/
+
+    #section2 article{
+        padding: 20px; /*give each article some internal space around its text*/
+        width: 100%; /*Keep the article inside the width of section 2*/
+        background-color: #FEDF6B;
+    }
+
+    #section2 article:first-of-type{
+        position:relative; /*needed so that the white separator can be positioned relative to article 1 */
+    }
+    #section2 article:first-of-type::after{
+        content: ""; /*The pseudo-element has no text*/
+        height: 10px; /*make the separator 10px high*/
+        background-color: white;
+        /*
+            make it as wide as the whole section
+            the article is 20px inside the section because #section2 has padding: 20px.
+            so we extend the separator 20px to the left and 20px to the right.
+        */
+        width: calc(100% + 40px);
+        position: absolute;
+        left: -20px;
+        bottom: -10px;
+    }
+    /*hide the rest of articles */
+
+    .hidden-mobile{
+        display: none;
+    }
+
+    /*footer*/
+
+    footer{
+        background-color: #FC302D;
+        width: 100%; /*Make the footer use the entire available width*/
+        padding:20px; /*Add space around the word "footer"*/
+        margin-top: auto;/*push footer to bottom of the viewport when there is extra vertival space*/
+    }
+
+    p{
+        margin: 0;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
