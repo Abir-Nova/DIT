@@ -1,0 +1,481 @@
+
+/* =========================================
+   CERTIFICATIONS — THE LEARNING ARCHIVE
+   ========================================= */
+
+.certifs {
+    --cert-ink: #0b1511;
+    --cert-cream: #f4efe3;
+    --cert-paper: #fbf8f0;
+    --cert-green: #0d5c3c;
+    --cert-green-light: #c7dbc9;
+    --cert-red: #b63739;
+    --cert-gold: #c19344;
+    --cert-muted: #6c746f;
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(5rem, 10vw, 9rem) 0;
+    background: var(--cert-ink);
+    color: var(--cert-cream);
+}
+
+/* Subtle background texture */
+.certifs::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(13, 92, 60, 0.28),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(182, 55, 57, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            rgba(244, 239, 227, 0.055) 1px,
+            transparent 1px
+        );
+
+    background-size: auto, auto, 22px 22px;
+}
+
+/* Keep content above the background */
+.certifs .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.certifs-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.65fr);
+    align-items: end;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.certifs .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--cert-green-light);
+}
+
+.certifs .section-label span {
+    color: var(--cert-gold);
+    font: 0.72rem "DM Mono", monospace;
+}
+
+.certifs .section-label p {
+    margin: 0;
+    font: 700 0.72rem "DM Mono", monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.certifs-heading {
+    max-width: 800px;
+    margin: 0;
+    font: 500 clamp(3rem, 7vw, 6.5rem)/0.98
+        "Playfair Display", Georgia, serif;
+    letter-spacing: -0.055em;
+}
+
+.certifs-heading em {
+    color: var(--cert-red);
+    font-weight: 500;
+}
+
+.certifs-description {
+    max-width: 330px;
+    justify-self: end;
+    margin: 0 0 0.5rem;
+    color: rgba(244, 239, 227, 0.68);
+    font-size: 0.9rem;
+    line-height: 1.9;
+}
+
+.certifs-description strong {
+    color: var(--cert-cream);
+    font-weight: 600;
+}
+
+/* =========================================
+   ARCHIVE TOP BAR
+   ========================================= */
+
+.certifs-archive-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    margin-bottom: 1.5rem;
+    border-top: 1px solid rgba(244, 239, 227, 0.22);
+    border-bottom: 1px solid rgba(244, 239, 227, 0.22);
+    color: rgba(244, 239, 227, 0.6);
+    font: 0.68rem "DM Mono", monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.certifs-archive-bar span:last-child {
+    color: var(--cert-gold);
+}
+
+/* =========================================
+   CERTIFICATE GRID
+   ========================================= */
+
+.certifs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+    align-items: stretch;
+}
+
+/* Individual archive card */
+.certif-card {
+    --card-accent: var(--cert-green);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 300px;
+    padding: 1.6rem;
+    overflow: hidden;
+
+    background: var(--cert-paper);
+    color: var(--cert-ink);
+    border: 1px solid rgba(244, 239, 227, 0.18);
+    border-radius: 3px;
+
+    opacity: 0;
+    transform: translateY(55px) rotate(1.5deg);
+
+    transition:
+        background-color 0.35s ease,
+        border-color 0.35s ease,
+        transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.4s ease;
+}
+
+/* Slightly different card treatments */
+.certif-card:nth-child(3n + 1) {
+    --card-accent: var(--cert-green);
+}
+
+.certif-card:nth-child(3n + 2) {
+    --card-accent: var(--cert-red);
+}
+
+.certif-card:nth-child(3n) {
+    --card-accent: var(--cert-gold);
+}
+
+/* Oversized background number */
+.certif-card::before {
+    content: attr(data-number);
+    position: absolute;
+    right: -0.1em;
+    bottom: -0.32em;
+
+    color: rgba(11, 21, 17, 0.045);
+    font: 500 clamp(7rem, 12vw, 11rem)/1
+        "Playfair Display", Georgia, serif;
+    letter-spacing: -0.08em;
+    pointer-events: none;
+
+    transition:
+        color 0.35s ease,
+        transform 0.45s ease;
+}
+
+/* Small accent strip */
+.certif-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: var(--card-accent);
+    transition: height 0.4s ease;
+}
+
+/* Card top line */
+.certif-card-top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: auto;
+}
+
+.certif-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--card-accent);
+    font: 0.7rem "DM Mono", monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.certif-category::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.certif-index {
+    color: rgba(11, 21, 17, 0.5);
+    font: 0.7rem "DM Mono", monospace;
+}
+
+/* Decorative seal */
+.certif-seal {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin: 2rem 0 1.25rem;
+    border: 1px solid color-mix(in srgb, var(--card-accent) 55%, transparent);
+    border-radius: 50%;
+    color: var(--card-accent);
+    font: 1.15rem "Playfair Display", Georgia, serif;
+    transform: rotate(-12deg);
+    transition:
+        transform 0.4s ease,
+        background-color 0.4s ease,
+        color 0.4s ease;
+}
+
+/* Certificate title and details */
+.certif-title {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 0.7rem;
+    max-width: 95%;
+    word-break: break-word;
+    font: 500 clamp(1.45rem, 2vw, 2rem)/1.15
+        "Playfair Display", Georgia, serif;
+    letter-spacing: -0.035em;
+}
+
+.certif-provider {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: var(--cert-muted);
+    font-size: 0.8rem;
+    line-height: 1.7;
+}
+
+/* Bottom metadata */
+.certif-card-footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-top: 1.7rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(11, 21, 17, 0.14);
+}
+
+.certif-year {
+    color: var(--cert-muted);
+    font: 0.7rem "DM Mono", monospace;
+    letter-spacing: 0.04em;
+}
+
+.certif-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--card-accent);
+    font: 0.66rem "DM Mono", monospace;
+    text-transform: uppercase;
+}
+
+.certif-status::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* In-progress courses */
+.certif-card.is-progress {
+    background: #e9e3d5;
+}
+
+/* Completed courses */
+.certif-card.is-complete {
+    background: var(--cert-cream);
+}
+
+/* =========================================
+   SCROLL REVEAL ANIMATION
+   ========================================= */
+
+.certif-card.is-visible {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+}
+
+.certif-card.is-visible::after {
+    height: 100%;
+}
+
+.certif-card:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.22);
+    border-color: rgba(244, 239, 227, 0.4);
+}
+
+.certif-card:hover::before {
+    color: rgba(11, 21, 17, 0.075);
+    transform: translate(-8px, -5px);
+}
+
+.certif-card:hover .certif-seal {
+    transform: rotate(0) scale(1.08);
+    background: var(--card-accent);
+    color: var(--cert-paper);
+}
+
+/* Keyboard users get the same visual feedback */
+.certif-card:focus-within {
+    outline: 2px solid var(--cert-gold);
+    outline-offset: 4px;
+}
+
+/* =========================================
+   BOTTOM SIGNATURE
+   ========================================= */
+
+.certifs-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(244, 239, 227, 0.22);
+    color: rgba(244, 239, 227, 0.58);
+    font: 0.68rem "DM Mono", monospace;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.certifs-footer span:last-child {
+    color: var(--cert-green-light);
+}
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1000px) {
+    .certifs-header {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .certifs-description {
+        justify-self: start;
+        max-width: 480px;
+    }
+
+    .certifs-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+    .certifs {
+        padding: 5rem 0;
+    }
+
+    .certifs-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .certifs-heading {
+        font-size: clamp(2.8rem, 13vw, 4.5rem);
+    }
+
+    .certifs-description {
+        font-size: 0.82rem;
+    }
+
+    .certifs-archive-bar {
+        align-items: flex-start;
+        font-size: 0.58rem;
+    }
+
+    .certifs-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .certif-card {
+        min-height: 265px;
+        padding: 1.3rem;
+    }
+
+    .certif-title {
+        font-size: 1.8rem;
+    }
+
+    .certifs-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        font-size: 0.6rem;
+    }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .certif-card,
+    .certif-card::before,
+    .certif-card::after,
+    .certif-seal {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .certif-card {
+        opacity: 1;
+        transform: none;
+    }
+}

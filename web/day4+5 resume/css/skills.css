@@ -1,0 +1,337 @@
+
+/* =========================================
+   SKILLS SECTION
+   Portfolio palette: green, cream, red and gold
+   ========================================= */
+
+.skills {
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+    color: var(--cream);
+    isolation: isolate;
+}
+
+/* Subtle dotted background */
+.skills::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.18;
+
+    background-image: radial-gradient(
+        rgba(199, 219, 201, 0.25) 0.7px,
+        transparent 0.7px
+    );
+
+    background-size: 18px 18px;
+}
+
+/* Main layout */
+.skills-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.5rem;
+}
+
+/* =========================================
+   HEADING
+   ========================================= */
+
+.skills-intro {
+    width: 100%;
+    max-width: 900px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.skills .section-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+    color: #aab8ae;
+}
+
+.skills .section-label span {
+    color: var(--gold);
+    font: 0.7rem "DM Mono", monospace;
+}
+
+.skills .section-label p {
+    font: 700 0.7rem "DM Mono", monospace;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.skills-intro h2 {
+    max-width: 850px;
+    margin: 0 auto 1.25rem;
+    color: var(--cream);
+    font: 500 clamp(2.5rem, 5.5vw, 5rem)/1.08
+        "Playfair Display", serif;
+    letter-spacing: -0.045em;
+}
+
+.skills-intro h2 em {
+    color: var(--red);
+    font-weight: 500;
+}
+
+.skills-intro > p {
+    max-width: 550px;
+    margin: 0 auto;
+    color: #aab8ae;
+    font-size: 0.85rem;
+    line-height: 1.8;
+}
+
+/* =========================================
+   SKILLS ROWS
+   ========================================= */
+
+.skills-snake {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 1050px;
+    margin-inline: auto;
+}
+
+.skill-track {
+    width: 100%;
+    overflow-x: clip;
+}
+
+/* Disable horizontal scrolling */
+.skill-track-inner {
+    display: block;
+    width: 100%;
+    transform: none !important;
+    animation: none !important;
+}
+
+.skill-set {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    width: 100%;
+}
+
+.skill-track.reverse .skill-set {
+    flex-direction: row;
+}
+
+/* =========================================
+   SKILL PILLS
+   ========================================= */
+
+.skill-tag {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+    max-width: 100%;
+    padding: 0.7rem 1.15rem;
+
+    border: 1px solid rgba(244, 239, 227, 0.65);
+    border-radius: 999px;
+
+    background: var(--cream);
+    color: var(--ink);
+
+    font-family: "Manrope", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: center;
+    white-space: nowrap;
+
+    /* Start above the section */
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(0, -100vh, 0) rotate(-8deg);
+
+    will-change: transform, opacity;
+}
+
+/* Cream: default pills */
+.skill-tag:nth-child(4n + 1) {
+    background: var(--cream);
+    color: var(--ink);
+    border-color: var(--cream);
+}
+
+/* Soft green: second pill in each color cycle */
+.skill-tag:nth-child(4n + 2) {
+    background: var(--green);
+    color: var(--cream);
+    border-color: var(--green);
+}
+
+/* Burgundy red: third pill */
+.skill-tag:nth-child(4n + 3) {
+    background: var(--red);
+    color: var(--cream);
+    border-color: var(--red);
+}
+
+/* Muted gold: fourth pill */
+.skill-tag:nth-child(4n + 4) {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+}
+
+/* Slightly different angles before landing */
+.skill-tag:nth-child(3n) {
+    --fall-rotation: 7deg;
+}
+
+.skill-tag:nth-child(3n + 1) {
+    --fall-rotation: -6deg;
+}
+
+.skill-tag:nth-child(3n + 2) {
+    --fall-rotation: 4deg;
+}
+
+/* =========================================
+   FALLING ANIMATION
+   JavaScript adds .is-falling one by one
+   ========================================= */
+
+.skill-tag.is-falling {
+    visibility: visible;
+    animation: skill-drop 0.85s cubic-bezier(0.2, 0.8, 0.25, 1) forwards;
+}
+
+.skill-tag.is-landed {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(0, 0, 0) rotate(0);
+    will-change: auto;
+}
+
+@keyframes skill-drop {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -100vh, 0)
+            rotate(var(--fall-rotation, -6deg));
+    }
+
+    65% {
+        opacity: 1;
+        transform: translate3d(0, 12px, 0) rotate(2deg);
+    }
+
+    82% {
+        transform: translate3d(0, -5px, 0) rotate(-1deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(0);
+    }
+}
+
+/* Subtle hover effect */
+.skill-tag.is-landed:hover {
+    border-color: var(--cream);
+    box-shadow: 0 5px 22px rgba(199, 219, 201, 0.14);
+    filter: brightness(1.08);
+}
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 900px) {
+    .skills-layout {
+        gap: 2.75rem;
+    }
+
+    .skills-snake {
+        gap: 1rem;
+    }
+
+    .skill-set {
+        gap: 0.7rem;
+    }
+
+    .skill-tag {
+        min-height: 41px;
+        padding: 0.65rem 0.95rem;
+        font-size: 0.73rem;
+    }
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+    .skills-layout {
+        gap: 2.25rem;
+    }
+
+    .skills-intro {
+        text-align: left;
+    }
+
+    .skills .section-label {
+        justify-content: flex-start;
+    }
+
+    .skills-intro h2 {
+        margin-inline: 0;
+        font-size: clamp(2.3rem, 10vw, 3.3rem);
+    }
+
+    .skills-intro > p {
+        margin-inline: 0;
+        font-size: 0.8rem;
+    }
+
+    .skills-snake {
+        align-items: stretch;
+        gap: 1.15rem;
+    }
+
+    .skill-set {
+        justify-content: flex-start;
+        gap: 0.55rem;
+    }
+
+    .skill-tag {
+        min-height: 38px;
+        padding: 0.55rem 0.75rem;
+        font-size: 0.69rem;
+        white-space: normal;
+    }
+}
+
+/* =========================================
+   ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .skill-tag,
+    .skill-tag.is-falling,
+    .skill-tag.is-landed {
+        animation: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+}

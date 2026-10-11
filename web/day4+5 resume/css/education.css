@@ -1,0 +1,359 @@
+
+/* =========================================
+   EDUCATION SECTION
+   Elegant editorial timeline
+   ========================================= */
+
+.education {
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+    color: var(--ink);
+    padding-block: clamp(5rem, 10vw, 9rem);
+}
+
+/* Main layout */
+.education-layout {
+    display: grid;
+    grid-template-columns: 0.7fr 2fr;
+    gap: clamp(2.5rem, 7vw, 7rem);
+    align-items: start;
+}
+
+/* =========================================
+   LEFT INTRODUCTION
+   ========================================= */
+
+.education-intro {
+    position: sticky;
+    top: 130px;
+}
+
+.education .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--muted);
+}
+
+.education .section-label span {
+    color: var(--red);
+    font: 0.75rem "DM Mono", monospace;
+}
+
+.education .section-label p {
+    margin: 0;
+    font: 700 0.7rem "DM Mono", monospace;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.education-intro h2 {
+    max-width: 400px;
+    margin: 0;
+    font: 500 clamp(2.8rem, 5vw, 5rem)/1.05
+        "Playfair Display", serif;
+    letter-spacing: -0.045em;
+}
+
+.education-intro h2 em {
+    color: var(--green);
+    font-weight: 500;
+}
+
+.education-intro > p {
+    max-width: 310px;
+    margin-top: 1.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+/* Small decorative line */
+.education-accent {
+    display: block;
+    width: 58px;
+    height: 3px;
+    margin-top: 2rem;
+    background: var(--red);
+    transform-origin: left;
+}
+
+/* =========================================
+   EDUCATION TIMELINE
+   ========================================= */
+
+.education-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(11, 21, 17, 0.2);
+}
+
+/* Each education entry */
+.education-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 135px minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    padding: 2.1rem 1rem 2.1rem 0;
+    border-bottom: 1px solid rgba(11, 21, 17, 0.2);
+    isolation: isolate;
+    min-width: 0;
+
+    /* Initial animation state */
+    opacity: 0;
+    transform: translateY(45px);
+
+    transition:
+        background-color 0.35s ease,
+        padding-left 0.35s ease,
+        opacity 0.7s ease,
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Reveal entries when JavaScript adds .is-visible */
+.education-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Subtle green hover background */
+.education-item::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0 -1rem;
+    background: rgba(13, 92, 60, 0.06);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.education-item:hover::before {
+    opacity: 1;
+}
+
+.education-item:hover {
+    padding-left: 1rem;
+}
+
+/* =========================================
+   DATE / PERIOD
+   ========================================= */
+
+.education-date {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding-top: 0.45rem;
+    color: var(--red);
+    font: 0.7rem/1.6 "DM Mono", monospace;
+    letter-spacing: 0.025em;
+}
+
+.education-date::before {
+    content: "";
+    flex: 0 0 7px;
+    width: 7px;
+    height: 7px;
+    margin-top: 0.25rem;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 4px rgba(13, 92, 60, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.education-item:hover .education-date::before {
+    transform: scale(1.35);
+}
+
+/* =========================================
+   DEGREE DETAILS
+   ========================================= */
+
+.education-content {
+    min-width: 0;
+}
+
+.education-content h3 {
+    margin: 0;
+    font: 500 clamp(1.35rem, 2.3vw, 2rem)/1.25
+        "Playfair Display", serif;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    transition: color 0.3s ease;
+}
+
+.education-item:hover .education-content h3 {
+    color: var(--green);
+}
+
+.education-content p {
+    margin: 0.6rem 0 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.8;
+}
+
+/* Optional status label for current studies */
+.education-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid rgba(13, 92, 60, 0.25);
+    border-radius: 999px;
+    color: var(--green);
+    font: 0.65rem "DM Mono", monospace;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.education-status::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: education-pulse 1.8s ease-in-out infinite;
+}
+
+/* =========================================
+   DECORATIVE NUMBER
+   ========================================= */
+
+.education-number {
+    display: block;
+    margin-top: 1rem;
+    color: rgba(11, 21, 17, 0.25);
+    font: 0.65rem "DM Mono", monospace;
+    letter-spacing: 0.1em;
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+
+@keyframes education-pulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(13, 92, 60, 0.25);
+    }
+
+    50% {
+        opacity: 0.65;
+        box-shadow: 0 0 0 5px rgba(13, 92, 60, 0);
+    }
+}
+
+/* Intro reveal, if not already handled by global reveal styles */
+.education-intro.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.education-intro.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 900px) {
+    .education-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .education-intro {
+        position: static;
+    }
+
+    .education-intro h2 {
+        max-width: 600px;
+    }
+
+    .education-intro > p {
+        max-width: 480px;
+    }
+
+    .education-item {
+        grid-template-columns: 120px minmax(0, 1fr);
+    }
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+    .education {
+        padding-block: 4.5rem;
+    }
+
+    .education-layout {
+        gap: 2.5rem;
+    }
+
+    .education-intro h2 {
+        font-size: clamp(2.7rem, 12vw, 4rem);
+    }
+
+    .education-item {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        padding: 1.6rem 0;
+    }
+
+    .education-item:hover {
+        padding-left: 0.5rem;
+    }
+
+    .education-item::before {
+        inset-inline: -0.5rem;
+    }
+
+    .education-date {
+        padding-top: 0;
+    }
+
+    .education-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .education-content p {
+        font-size: 0.82rem;
+    }
+}
+
+/* =========================================
+   ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .education-item,
+    .education-intro.reveal,
+    .education-item::before,
+    .education-content h3,
+    .education-date::before {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .education-item {
+        opacity: 1;
+        transform: none;
+    }
+
+    .education-intro.reveal {
+        opacity: 1;
+        transform: none;
+    }
+}

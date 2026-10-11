@@ -1,0 +1,43 @@
+{
+  "project": "Abir Nassif — Personal Portfolio",
+  "files": [
+    "index.html",
+    "css/style.css",
+    "css/skills.css",
+    "css/education.css",
+    "css/certifs.css",
+    "css/form.css",
+    "css/footer.css",
+    "js/main.js",
+    "js/education.js",
+    "js/certifs.js",
+    "js/form.js",
+    "js/footer.js",
+    "assets/Abir_Nassif_CV_2026.pdf",
+    "assets/",
+    "README.md"
+  ],
+  "features": [
+    "responsive design",
+    "creative editorial visual identity",
+    "custom color palette",
+    "animated hero section",
+    "interactive navigation",
+    "responsive mobile menu",
+    "scroll reveal animations",
+    "animated experience timeline",
+    "interactive project showcase",
+    "animated skills section",
+    "animated education section",
+    "creative certificate cards",
+    "animated contact section",
+    "interactive contact form",
+    "email client integration",
+    "LinkedIn and GitHub links",
+    "CV download or viewing link",
+    "animated footer",
+    "reduced-motion accessibility support",
+    "recruiter-focused content",
+    "desktop, tablet, and mobile layouts"
+  ]
+}
