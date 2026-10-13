@@ -1,8 +1,8 @@
 
-/* =========================================
+/* =
    EDUCATION SECTION
    Elegant editorial timeline
-   ========================================= */
+   = */
 
 .education {
     position: relative;
@@ -20,9 +20,9 @@
     align-items: start;
 }
 
-/* =========================================
+/* =
    LEFT INTRODUCTION
-   ========================================= */
+   = */
 
 .education-intro {
     position: sticky;
@@ -80,9 +80,9 @@
     transform-origin: left;
 }
 
-/* =========================================
+/* =
    EDUCATION TIMELINE
-   ========================================= */
+   = */
 
 .education-list {
     position: relative;
@@ -138,9 +138,9 @@
     padding-left: 1rem;
 }
 
-/* =========================================
+/* =
    DATE / PERIOD
-   ========================================= */
+   = */
 
 .education-date {
     display: flex;
@@ -168,9 +168,9 @@
     transform: scale(1.35);
 }
 
-/* =========================================
+/* =
    DEGREE DETAILS
-   ========================================= */
+   = */
 
 .education-content {
     min-width: 0;
@@ -220,9 +220,9 @@
     animation: education-pulse 1.8s ease-in-out infinite;
 }
 
-/* =========================================
+/* =
    DECORATIVE NUMBER
-   ========================================= */
+   = */
 
 .education-number {
     display: block;
@@ -232,9 +232,9 @@
     letter-spacing: 0.1em;
 }
 
-/* =========================================
+/* =
    ANIMATIONS
-   ========================================= */
+   = */
 
 @keyframes education-pulse {
     0%, 100% {
@@ -262,9 +262,9 @@
     transform: translateY(0);
 }
 
-/* =========================================
+/* =
    TABLET
-   ========================================= */
+   = */
 
 @media (max-width: 900px) {
     .education-layout {
@@ -289,9 +289,9 @@
     }
 }
 
-/* =========================================
+/* =
    MOBILE
-   ========================================= */
+   = */
 
 @media (max-width: 600px) {
     .education {
@@ -333,9 +333,9 @@
     }
 }
 
-/* =========================================
+/* =
    ACCESSIBILITY
-   ========================================= */
+   = */
 
 @media (prefers-reduced-motion: reduce) {
     .education-item,

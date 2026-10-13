@@ -1,7 +1,7 @@
 
-/* =========================================
+/* =
    SKILLS FALLING ANIMATION
-   ========================================= */
+   = */
 
 document.addEventListener("DOMContentLoaded", () => {
     const skillsSection = document.querySelector("#skills");

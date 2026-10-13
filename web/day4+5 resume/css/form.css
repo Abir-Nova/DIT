@@ -1,8 +1,8 @@
 
-/* =========================================
+/* =
    CONTACT — THE FINAL CHAPTER
    Palette: cream, ink, green, red and gold
-   ========================================= */
+   = */
 
 .contact {
     --contact-line: rgba(11, 21, 17, 0.16);
@@ -50,9 +50,9 @@
     gap: clamp(3rem, 7vw, 7rem);
 }
 
-/* =========================================
+/* =
    LEFT SIDE — CONTACT INTRO
-   ========================================= */
+   = */
 
 .contact-copy {
     position: relative;
@@ -124,9 +124,9 @@
     animation: contact-dot-pulse 2.2s ease-in-out infinite;
 }
 
-/* =========================================
+/* =
    CONTACT LINKS
-   ========================================= */
+   = */
 
 .contact-links {
     margin-top: 3rem;
@@ -191,9 +191,9 @@
     transform: translate(3px, -3px);
 }
 
-/* =========================================
+/* =
    RIGHT SIDE — MESSAGE STUDIO
-   ========================================= */
+   = */
 
 .contact-form {
     position: relative;
@@ -312,9 +312,9 @@
     outline-offset: 4px;
 }
 
-/* =========================================
+/* =
    SEND BUTTON
-   ========================================= */
+   = */
 
 .contact-form .submit-button {
     position: relative;
@@ -388,10 +388,10 @@
     font-size: 0.72rem;
 }
 
-/* =========================================
+/* =
    ENTRANCE ANIMATIONS
    Activated by form.js
-   ========================================= */
+   = */
 
 .contact .contact-copy,
 .contact .contact-form {
@@ -454,9 +454,9 @@
     }
 }
 
-/* =========================================
+/* =
    RESPONSIVE
-   ========================================= */
+   = */
 
 @media (max-width: 900px) {
     .contact-grid {

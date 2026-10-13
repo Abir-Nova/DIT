@@ -1,7 +1,7 @@
 
-/* =========================================
+/* =
    CERTIFICATIONS — SCROLL REVEAL
-   ========================================= */
+   = */
 
 document.addEventListener("DOMContentLoaded", () => {
     const section = document.querySelector("#certifs");

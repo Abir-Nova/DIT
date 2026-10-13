@@ -1,7 +1,7 @@
 
-/* =========================================
+/* =
    EDUCATION SCROLL ANIMATIONS
-   ========================================= */
+   = */
 
 document.addEventListener("DOMContentLoaded", () => {
     const educationItems = document.querySelectorAll(

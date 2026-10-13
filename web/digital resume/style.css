@@ -1,0 +1,386 @@
+/* PAGE SETUP */
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #e9edf1;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* CV PAGE*/
+
+.cv {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  background: #fff;
+  position: relative;
+  overflow: visible;
+  font-size: 9.2pt;
+  line-height: 1.32;
+}
+
+/* HEADER / HERO */
+
+.hero {
+  min-height: 39.5mm;
+  margin-top: 8mm;
+  background: #acd7ee;
+  border-top: 2mm solid #d6eaf5;
+
+  display: grid;
+  grid-template-columns: 43mm minmax(0, 1fr) 30mm;
+  align-items: center;
+  gap: 3mm;
+
+  padding: 2mm 4.5mm 2mm 7mm;
+  position: relative;
+}
+
+.portrait {
+  display: block;
+  width: 40mm;
+  height: 40mm;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 35%;
+  border: 1.2mm solid #f4f4f4;
+  margin-top: -1mm;
+}
+
+.intro {
+  min-width: 0;
+  align-self: center;
+  padding-top: 1mm;
+}
+
+h1 {
+  margin: 0 0 2mm;
+  color: #183c63;
+  font-size: 17pt;
+  line-height: 1.1;
+  letter-spacing: 0.2px;
+}
+
+.subtitle {
+  margin: 0 0 2mm;
+  font-size: 10.5pt;
+  line-height: 1.3;
+  color: #183c63;
+}
+
+.summary {
+  margin: 0;
+  font-size: 9.2pt;
+  line-height: 1.45;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+.qr-codes {
+  display: flex;
+  align-self: start;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3mm;
+  padding-top: 2mm;
+}
+
+.qr-codes img {
+  display: block;
+  flex: 0 0 12mm;
+  width: 12mm;
+  height: 12mm;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 3mm;
+}
+
+/* MAIN TWO-COLUMN LAYOUT FIX: timeline is absolute, not a grid column.*/
+
+.columns {
+  display: grid;
+
+  /* Sidebar takes approximately 34% Main content gets the remaining space */
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
+
+  column-gap: 10mm;
+
+  padding: 2.4mm 4mm 5mm 3.5mm;
+  position: relative;
+  align-items: start;
+}
+
+.sidebar {
+  min-width: 0;
+  color: #183c63;
+  padding-right: 0;
+}
+
+.main-content {
+  min-width: 0;
+  padding-right: 2mm;
+}
+
+/* TIMELINE */
+
+.timeline {
+  position: absolute;
+
+  /* Position the line inside the gap between columns. */
+  left: calc(3.5mm + 34% + 5mm);
+
+  top: 7mm;
+  bottom: 5mm;
+
+  width: 1px;
+  background: #80a7c9;
+
+  pointer-events: none;
+}
+
+.timeline span {
+  position: absolute;
+  left: -1.05mm;
+
+  width: 2.1mm;
+  height: 2.1mm;
+
+  border-radius: 50%;
+  background: #80a7c9;
+}
+
+.timeline span:nth-child(1) {
+  top: 0;
+}
+
+.timeline span:nth-child(2) {
+  top: 24%;
+}
+
+.timeline span:nth-child(3) {
+  top: 49%;
+}
+
+.timeline span:nth-child(4) {
+  top: 75%;
+}
+
+/* SECTION HEADINGS */
+
+section {
+  margin: 0 0 4mm;
+}
+
+h2 {
+  margin: 0 0 1.7mm;
+
+  color: #7ca3c8;
+  font-size: 12.1pt;
+  line-height: 1.1;
+  font-weight: 700;
+
+  overflow-wrap: break-word;
+}
+
+/* SIDEBAR */
+
+.sidebar p {
+  margin: 0 0 1.6mm;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.sidebar h3 {
+  margin: 0 0 1mm;
+  font-size: 9.6pt;
+  line-height: 1.3;
+  text-decoration: underline;
+}
+
+.sidebar h3.spaced {
+  margin-top: 6mm;
+}
+
+ul {
+  margin: 0;
+  padding-left: 5mm;
+}
+
+li {
+  padding-left: 0;
+  margin: 0 0 0.7mm;
+  overflow-wrap: break-word;
+}
+
+.sidebar li {
+  line-height: 1.42;
+}
+
+.sidebar section {
+  margin-bottom: 4.1mm;
+}
+
+/* MAIN CONTENT ENTRIES */
+
+.main-content section {
+  margin-bottom: 3.5mm;
+}
+
+/* Avoid narrow columns and allow long headings to wrap naturally. */
+.entry {
+  min-width: 0;
+  margin-bottom: 2.2mm;
+  break-inside: avoid;
+}
+
+.entry h3 {
+  margin: 0 0 0.8mm;
+
+  font-size: 9.1pt;
+  line-height: 1.3;
+  font-weight: 700;
+
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.entry p {
+  margin: 0 0 0.7mm;
+  line-height: 1.3;
+  overflow-wrap: break-word;
+}
+
+.entry ul {
+  padding-left: 5mm;
+  margin-top: 0.7mm;
+}
+
+.entry li {
+  line-height: 1.3;
+  margin-bottom: 0.5mm;
+}
+
+.last-education {
+  margin-top: 1mm;
+  margin-bottom: 2.3mm;
+}
+
+/* CERTIFICATES */
+
+.certificates {
+  margin-top: 1mm;
+}
+
+.certificates ul {
+  padding-left: 4mm;
+}
+
+.certificates li {
+  margin-bottom: 0.7mm;
+  line-height: 1.3;
+}
+
+/* SCREEN DISPLAY */
+
+@media screen {
+  body {
+    padding: 0;
+  }
+
+  .cv {
+    box-shadow: 0 5px 30px #0002;
+  }
+}
+
+/* RESPONSIVE PREVIEW : Useful when viewing the CV on a narrow screen. */
+
+@media screen and (max-width: 800px) {
+  .cv {
+    width: 100%;
+    min-height: 0;
+  }
+
+  .hero {
+    grid-template-columns: 30mm minmax(0, 1fr);
+    gap: 4mm;
+    padding: 4mm;
+  }
+
+  .portrait {
+    width: 28mm;
+    height: 28mm;
+  }
+
+  .qr-codes {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    padding-top: 1mm;
+  }
+
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 5mm;
+  }
+
+  .sidebar,
+  .main-content {
+    width: 100%;
+    padding: 0;
+  }
+
+  .timeline {
+    display: none;
+  }
+
+  .main-content {
+    margin-top: 3mm;
+  }
+}
+
+/* PRINT */
+
+@media print {
+
+  html,
+  body {
+    width: 210mm;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  .cv {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .hero {
+    margin-top: 8mm;
+  }
+
+  .entry {
+    break-inside: avoid;
+  }
+
+  .sidebar section {
+    break-inside: avoid;
+  }
+}

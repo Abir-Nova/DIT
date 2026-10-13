@@ -1,7 +1,7 @@
 
-/* =========================================
+/* =
    CONTACT INTERACTIONS
-   ========================================= */
+   = */
 
 document.addEventListener("DOMContentLoaded", () => {
     const contact = document.querySelector("#contact");
