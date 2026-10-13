@@ -1,0 +1,382 @@
+
+/* A4 CV — FULL PAGE, READABLE LAYOUT */
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #e9edf1;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* A4 DIMENSIONS */
+
+.cv {
+  width: 210mm;
+  min-height: 297mm;
+  height: auto;
+  margin: 0 auto;
+  background: #fff;
+  position: relative;
+  overflow: visible;
+  font-size: 8.5pt;
+  line-height: 1.25;
+}
+
+/* HEADER */
+
+.hero {
+  height: 42mm;
+  margin: 0;
+  padding: 3mm 5mm 3mm 7mm;
+  background: #acd7ee;
+  border-top: 2mm solid #d6eaf5;
+
+  display: grid;
+  grid-template-columns: 39mm minmax(0, 1fr) 29mm;
+  align-items: center;
+  gap: 3mm;
+}
+
+.portrait {
+  display: block;
+  width: 36mm;
+  height: 36mm;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 35%;
+  border: 1.2mm solid #f4f4f4;
+  margin: 0;
+}
+
+.intro {
+  min-width: 0;
+  align-self: center;
+}
+
+h1 {
+  margin: 0 0 2mm;
+  color: #183c63;
+  font-size: 19pt;
+  line-height: 1.05;
+}
+
+.subtitle {
+  margin: 0 0 2mm;
+  color: #183c63;
+  font-size: 10pt;
+  line-height: 1.25;
+}
+
+.summary {
+  margin: 0;
+  font-size: 8.4pt;
+  line-height: 1.4;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+.qr-codes {
+  display: flex;
+  align-self: start;
+  justify-content: space-between;
+  gap: 3mm;
+  padding-top: 1mm;
+}
+
+.qr-codes img {
+  display: block;
+  width: 12mm;
+  height: 12mm;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 2mm;
+}
+
+/* TWO COLUMNS */
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.5fr);
+  column-gap: 11mm;
+  align-items: start;
+  position: relative;
+  margin: 0;
+  padding: 4mm 5mm 3mm;
+}
+
+.sidebar,
+.main-content {
+  min-width: 0;
+  padding: 0;
+}
+
+.sidebar {
+  color: #183c63;
+}
+
+.main-content {
+  padding-right: 0;
+}
+
+/* TIMELINE */
+
+.timeline {
+  position: absolute;
+  left: 36.5%;
+  top: 6mm;
+  bottom: 5mm;
+  width: 0.3mm;
+  background: #80a7c9;
+  pointer-events: none;
+}
+
+.timeline span {
+  position: absolute;
+  left: -0.9mm;
+  width: 2mm;
+  height: 2mm;
+  border-radius: 50%;
+  background: #80a7c9;
+}
+
+.timeline span:nth-child(1) {
+  top: 0;
+}
+
+.timeline span:nth-child(2) {
+  top: 24%;
+}
+
+.timeline span:nth-child(3) {
+  top: 49%;
+}
+
+.timeline span:nth-child(4) {
+  top: 75%;
+}
+
+/* SECTION SPACING */
+
+section {
+  margin: 0 0 2.5mm;
+  padding: 0;
+}
+
+h2 {
+  margin: 0 0 1.2mm;
+  color: #7ca3c8;
+  font-size: 11pt;
+  line-height: 1.1;
+  font-weight: 700;
+  overflow-wrap: break-word;
+}
+
+h3 {
+  font-size: 8.5pt;
+  line-height: 1.2;
+  margin: 0 0 0.8mm;
+}
+
+p {
+  margin: 0 0 0.8mm;
+}
+
+/* SIDEBAR CONTENT */
+
+.sidebar section {
+  margin-bottom: 2.8mm;
+}
+
+.sidebar p {
+  margin: 0 0 1.2mm;
+  font-size: 8.2pt;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.sidebar h3 {
+  margin: 0 0 1mm;
+  font-size: 8.5pt;
+  line-height: 1.2;
+  text-decoration: underline;
+}
+
+.sidebar h3.spaced {
+  margin-top: 2.5mm;
+}
+
+ul {
+  margin: 0;
+  padding-left: 5mm;
+}
+
+li {
+  margin: 0 0 0.5mm;
+  padding-left: 0;
+  line-height: 1.25;
+  overflow-wrap: break-word;
+}
+
+.sidebar li {
+  font-size: 8.2pt;
+  line-height: 1.3;
+}
+
+.sidebar ul {
+  padding-left: 5mm;
+}
+
+/* EDUCATION, EXPERIENCE & PROJECTS */
+
+.main-content section {
+  margin-bottom: 2.5mm;
+}
+
+.entry {
+  min-width: 0;
+  margin: 0 0 1.8mm;
+  padding: 0;
+}
+
+.entry h3 {
+  margin: 0 0 0.6mm;
+  font-size: 8.4pt;
+  line-height: 1.2;
+  font-weight: 700;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.entry p {
+  margin: 0 0 0.5mm;
+  font-size: 8.2pt;
+  line-height: 1.25;
+}
+
+.entry ul {
+  margin-top: 0.4mm;
+  padding-left: 5mm;
+}
+
+.entry li {
+  margin-bottom: 0.3mm;
+  font-size: 8.1pt;
+  line-height: 1.22;
+}
+
+.last-education {
+  margin-top: 0;
+  margin-bottom: 1.8mm;
+}
+
+/* CERTIFICATES */
+
+.certificates {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 2mm;
+}
+
+.certificates h2 {
+  margin-bottom: 1mm;
+}
+
+.certificates ul {
+  padding-left: 5mm;
+}
+
+.certificates li {
+  margin-bottom: 0.3mm;
+  font-size: 7.8pt;
+  line-height: 1.15;
+}
+
+/* SCREEN PREVIEW */
+
+@media screen {
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    background: #e9edf1;
+  }
+
+  .cv {
+    box-shadow: 0 5px 30px #0002;
+  }
+}
+
+/* PRINT / SAVE AS PDF */
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    height: auto;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff;
+  }
+
+  .cv {
+    width: 210mm;
+    min-height: 297mm;
+    height: auto;
+    margin: 0 !important;
+    overflow: visible;
+    box-shadow: none;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .hero {
+    margin: 0;
+  }
+
+  .columns {
+    margin: 0;
+  }
+
+  section,
+  .entry,
+  .sidebar section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+
+/* CONTACT LINKS */
+
+.sidebar a {
+  color: inherit;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.sidebar a:hover {
+  color: #7ca3c8;
+  text-decoration: underline;
+}
+
+/* Keep links readable and clickable in exported PDFs */
+@media print {
+  .sidebar a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
