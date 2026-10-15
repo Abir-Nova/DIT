@@ -6,9 +6,7 @@
  * 3. Prevent the square from leaving the white box
  */
 
-
 // STEP 1: SELECT THE HTML ELEMENTS
-
 
 // Select the first <canvas> element in the HTML
 // In this task, the canvas is our black square
@@ -25,7 +23,6 @@ const coordinatesBox = document.querySelector("footer div:nth-child(2)");
 
 // STEP 2: PREPARE THE WHITE BOX
 
-
 // position: relative makes this box the reference point
 // for the absolutely positioned black square.
 // In other words, the square's top and left positions
@@ -41,10 +38,7 @@ box.style.height = "200px";
 // the reference point for our coordinates.
 box.style.padding = "0";
 
-
-
 // STEP 3: PREPARE THE BLACK SQUARE
-
 
 // position: absolute allows us to move the square
 // by changing its left and top CSS properties.
@@ -71,10 +65,7 @@ canvas.style.cursor = "grab";
 // on the square as touch scrolling or zooming.
 canvas.style.touchAction = "none";
 
-
-
 // STEP 4: CREATE VARIABLES FOR DRAGGING
-
 
 // This variable remembers whether the user is currently
 // dragging the square.
@@ -88,14 +79,10 @@ let offsetX = 0;
 
 // offsetY remembers the vertical distance between
 // the pointer and the square's top edge when dragging starts.
-//
 // These offsets prevent the square from suddenly jumping
 // so that its top-left corner moves directly under the pointer.
 
-
-
 // STEP 5: CREATE A FUNCTION TO DISPLAY COORDINATES
-
 
 // A function is a reusable block of code.
 // We call this function whenever the square moves.
@@ -108,10 +95,7 @@ function updateCoordinates(x, y) {
     coordinatesBox.textContent = `New coordinates => {x:${x}, y:${y}}`;
 }
 
-
-
 // STEP 6: START DRAGGING WHEN THE SQUARE IS PRESSED
-
 
 // pointerdown runs when the user presses the square
 // with a mouse, a finger, or another pointer device.
@@ -126,31 +110,23 @@ canvas.addEventListener("pointerdown", function (event) {
 
     // event.clientX is the pointer's horizontal position
     // relative to the viewport.
-    //
     // squareRect.left is the square's left edge.
-    //
     // Subtracting them tells us where inside the square
     // the user clicked.
     offsetX = event.clientX - squareRect.left;
-
     // Do the same calculation vertically.
     // clientY is the pointer's vertical position.
     // squareRect.top is the square's top edge.
     offsetY = event.clientY - squareRect.top;
-
     // Change the cursor to show that the square is being held.
     canvas.style.cursor = "grabbing";
-
     // Keep receiving pointer events for this interaction,
     // even if the pointer moves outside the square.
     // event.pointerId identifies the current pointer.
     canvas.setPointerCapture(event.pointerId);
 });
 
-
-
 // STEP 7: MOVE THE SQUARE WHILE DRAGGING
-
 
 // pointermove runs whenever the pointer moves.
 canvas.addEventListener("pointermove", function (event) {
@@ -165,11 +141,8 @@ canvas.addEventListener("pointermove", function (event) {
     // We need this because the pointer coordinates (clientX
     // and clientY) are also measured relative to the viewport.
     const boxRect = box.getBoundingClientRect();
-
-
-    // ----------------------------------------------
+ 
     // STEP 7A: CALCULATE THE NEW COORDINATES
-    // ----------------------------------------------
 
     // Horizontal position:
     // 1. event.clientX: pointer's horizontal position on screen.
@@ -183,22 +156,19 @@ canvas.addEventListener("pointermove", function (event) {
     // 3. Subtract offsetY to preserve where the square was grabbed.
     let y = event.clientY - boxRect.top - offsetY;
 
-
-    // ----------------------------------------------
     // STEP 7B: KEEP THE SQUARE INSIDE THE WHITE BOX
-    // ----------------------------------------------
 
     // Math.min(a, b) returns the smaller of two numbers.
     // Math.max(a, b) returns the larger of two numbers.
-    //
+
     // First, Math.min() prevents x from exceeding the
     // rightmost position the square can occupy.
-    //
+
     // Then, Math.max() prevents x from becoming negative.
-    //
+
     // box.clientWidth is the inside width of the white box.
     // canvas.offsetWidth is the square's displayed width.
-    //
+    
     // Subtracting the square's width ensures that its
     // right edge does not extend beyond the white box.
     x = Math.max(
@@ -215,9 +185,7 @@ canvas.addEventListener("pointermove", function (event) {
     );
 
 
-    // ----------------------------------------------
     // STEP 7C: APPLY THE NEW POSITION
-    // ----------------------------------------------
 
     // Update the square's horizontal position.
     // CSS position values need units, so we add "px".
@@ -226,22 +194,16 @@ canvas.addEventListener("pointermove", function (event) {
     // Update the square's vertical position.
     canvas.style.top = `${y}px`;
 
-
-    // ----------------------------------------------
     // STEP 7D: DISPLAY THE COORDINATES
-    // ----------------------------------------------
 
     // Math.round() rounds a number to the nearest integer.
     // This avoids displaying decimal coordinates such as 50.7.
-    //
+
     // Pass the rounded coordinates to our display function.
     updateCoordinates(Math.round(x), Math.round(y));
 });
 
-
-
 // STEP 8: STOP DRAGGING WHEN THE POINTER IS RELEASED
-
 
 // pointerup runs when the user releases the mouse button
 // or lifts their finger from the screen.
@@ -254,10 +216,7 @@ canvas.addEventListener("pointerup", function () {
     canvas.style.cursor = "grab";
 });
 
-
-
 // STEP 9: HANDLE A CANCELLED POINTER INTERACTION
-
 
 // pointercancel can happen if the browser interrupts
 // the pointer interaction, for example because of
@@ -272,10 +231,7 @@ canvas.addEventListener("pointercancel", function () {
     canvas.style.cursor = "grab";
 });
 
-
-
 // STEP 10: DISPLAY THE INITIAL POSITION
-
 
 // Before the user moves the square, it starts at
 // the top-left corner of the white box.
