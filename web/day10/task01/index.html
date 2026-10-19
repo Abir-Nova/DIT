@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Define the character encoding so names display correctly -->
+    <meta charset="UTF-8">
+
+    <!-- Make the page adapt to mobile and desktop screen sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Day 10 - Task 01 | AJAX</title>
+
+    <!-- Optional stylesheet: it changes appearance, not AJAX behavior -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="container">
+        <h1>AJAX Name Form</h1>
+
+        <p>
+            Enter your name and send it to PHP without reloading
+            the page.
+        </p>
+
+        <!-- The form groups the text input and submit button -->
+        <form id="name-form">
+            <label for="name">Your name</label>
+
+            <!-- The user types their name here -->
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="enter your name"
+                autocomplete="name"
+                required
+            >
+
+            <!-- type="submit" lets us handle the form submission in JS -->
+            <button type="submit">Send name</button>
+        </form>
+
+        <!-- An accessible area for optional status messages. -->
+        <p id="status" role="status" aria-live="polite"></p>
+    </main>
+
+    <script>
+        // 1. Find the HTML elements we need to work with
+        const form = document.querySelector("#name-form");
+        const nameInput = document.querySelector("#name");
+        const status = document.querySelector("#status");
+
+        // 2. Listen for the form being submitted.
+        form.addEventListener("submit", function (event) {
+
+            // Prevent the browser's normal form submission,
+            // which would navigate to another page
+            event.preventDefault();
+
+            // Read the name and remove spaces at the beginning/end
+            const name = nameInput.value.trim();
+
+            // Do not send a request if the field is empty
+            if (name === "") {
+                status.textContent = "Please enter your name.";
+                nameInput.focus();
+                return;
+            }
+
+            // Show a message while the request is in progress
+            status.textContent = "Sending your name...";
+
+            // Build the GET URL 
+
+            // Encode the name safely as a URL query parameter
+            const params = new URLSearchParams({ name: name }); // URLSearchParams encodes the value correctly for a URL, including spaces and special characters
+
+            // 3. Send an asynchronous GET to the PHP script
+            fetch("task01.php?" + params.toString(), {
+                method: "GET",
+                headers: {
+                    "Accept": "application/json"
+                }
+            })
+            // fetch() sends the request to the server. Because the method is GET, the name is sent as a query parameter in the URL, not as a request body
+            // The Accept: application/json header tells the server that JavaScript expects JSON. This is different from the PHP response header, which tells the browser what the server actually returns
+
+            // 4. Check whether the HTTP request succeeded
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error("The server returned an error.");
+                }
+
+                // Convert the JSON response text into a JS object
+                return response.json();
+            })
+
+            //A promise represents a result that may become available later. 
+            // fetch() returns a promise, so .then() runs when the previous asynchronous step succeeds
+
+            // The response object contains information about the HTTP response
+            // response.ok is true for HTTP status codes in the 200–299 range
+            // throw new Error(...) creates an error that will be handled by .catch()
+            // response.json() reads the response body and parses it into a JavaScript value
+
+            // 5. Use the data returned by PHP
+            .then(function (data) {
+
+                // Make sure the expected name property exists
+                if (typeof data.name !== "string") {
+                    throw new Error("Invalid JSON response.");
+                }
+
+                status.textContent = "Name received successfully.";
+
+                // Display the name that came BACK from PHP
+                alert("Hello, " + data.name + "!");
+            })
+
+
+            // Now data.name gives us the name sent back by the server
+            // We display the name returned by PHP, rather than simply displaying the original input. 
+            // That demonstrates the full request-and-response cycle required by the exercise.
+
+            // 6. Handle network errors, HTTP errors, and parsing errors
+            .catch(function (error) {
+                // Display the exact error in the browser Console.
+                console.error("AJAX error:", error);
+
+                // Update the message on the page.
+                status.textContent = "An error occurred.";
+
+                // Show the error details while debugging.
+                alert("AJAX error: " + error.message);
+            });
+
+            //.catch() handles failures that reject the promise chain, including network errors and errors we throw ourselves
+            //console.error() is useful for debugging, while the status message and alert make the error visible to the user
+            //if the server returns malformed JSON, response.json() also fails, and the error reaches .catch()
+
+
+        });
+    </script>
+</body>
+</html>

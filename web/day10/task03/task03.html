@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task 03 - Countries</title>
+
+    <style>
+        /* Basic styling to make the table easy to read */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        button {
+            padding: 10px 16px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Countries</h1>
+
+    <!-- Clicking this button will load the countries from the JSON file -->
+    <button id="load-countries">Load countries</button>
+
+    <!--
+        The table starts empty
+        We keep the two column headings and add country rows with JavaScript
+    -->
+    <table>
+        <thead>
+            <tr>
+                <th>Country-code</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+
+        <!-- JavaScript will insert the country rows inside this tbody -->
+        <tbody id="countries-body"></tbody>
+    </table>
+
+    <script>
+        // Find the button the user will click
+        const loadButton = document.querySelector("#load-countries");
+
+        // Find the table body where country rows will be inserted
+        const countriesBody = document.querySelector("#countries-body");
+
+        // Listen for a click on the button
+        loadButton.addEventListener("click", function () {
+
+            // Request the JSON file from the same folder as this HTML page
+            fetch("countries.json")
+
+                // fetch() gives us a Response object
+                .then(function (response) {
+
+                    // Check whether the HTTP request succeeded
+                    if (!response.ok) {
+                        throw new Error("Could not load countries: HTTP " + response.status);
+                    }
+
+                    // REQUIRED BY THE ASSIGNMENT:
+                    // Parse the response body from JSON text into JavaScript data
+                    return response.json();
+                })
+
+                // When fetch() receives an HTTP response, the first .then() callback gets a Response object
+                // This object provides information about the request, including:
+                //  response.status — the HTTP status code, such as 200 or 404
+                //  response.ok — true when the status is between 200 and 299
+                //  response.json() — a method that reads the response body and parses it as JSON
+                // The status check is useful because fetch() does not automatically reject its Promise for HTTP errors like 404 Not Found
+                //response.json() :
+                // When the browser downloads the file, the response body contains JSON-formatted text
+                // JavaScript needs to parse that text into a JavaScript object before you can conveniently loop through its properties
+                // response.json() does two things:
+                // 1. Reads the response body
+                // 2. Parses the JSON text into JavaScript data
+
+                // "countries" is now a JavaScript object
+                // Example: { BD: "Bangladesh", BE: "Belgium", ... }
+                .then(function (countries) {
+
+                    // Clear existing rows so clicking the button again
+                    // does not add duplicate countries
+                    countriesBody.replaceChildren();
+
+                    // Object.entries() turns each key-value pair into an array
+                    // Example: ["BD", "Bangladesh"]
+                    for (const [code, name] of Object.entries(countries)) {
+
+                        // Create a new table row
+                        const row = document.createElement("tr");
+
+                        // Create the first cell for the country code
+                        const codeCell = document.createElement("td");
+                        codeCell.textContent = code;
+
+                        // Create the second cell for the country name
+                        const nameCell = document.createElement("td");
+                        nameCell.textContent = name;
+
+                        // Put both cells inside the row
+                        row.append(codeCell, nameCell);
+
+                        // Add the completed row to the table body
+                        countriesBody.appendChild(row);
+                    }
+                })
+
+                // Handle network problems, missing files, or invalid JSON
+                .catch(function (error) {
+                    console.error("Error loading countries:", error);
+
+                    alert("Could not load the countries. Check the server and JSON file.");
+                });
+        });
+    </script>
+</body>
+</html>

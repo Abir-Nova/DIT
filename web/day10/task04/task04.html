@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task 04 - Brand validation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .field {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        /* Validation errors must be red */
+        .error {
+            color: red;
+        }
+
+        /* Successful validation messages must be green */
+        .valid {
+            color: green;
+        }
+
+        /* Keep an empty message area from shifting the layout */
+        .message {
+            min-height: 20px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Product brand checker</h1>
+
+    <div class="field">
+        <label for="type">Product type</label>
+
+        <input
+            type="text"
+            id="type"
+            name="type"
+            placeholder="e.g. phone"
+            autocomplete="off"
+        >
+
+        <!-- JavaScript will update this message in real time -->
+        <p id="type-message" class="message error" aria-live="polite">
+            No type sent yet!
+        </p>
+    </div>
+
+    <div class="field">
+        <label for="brand">Brand</label>
+
+        <input
+            type="text"
+            id="brand"
+            name="brand"
+            placeholder="e.g. Samsung"
+            autocomplete="off"
+        >
+
+        <!-- This message is independent of the type message -->
+        <p id="brand-message" class="message error" aria-live="polite">
+            No brand sent yet!
+        </p>
+    </div>
+
+    <!-- ARIA = Accessible Rich Internet Applications. 
+    It helps make websites more accessible to people using assistive technologies, such as screen readers
+    live = The content can change dynamically while the page is open
+    polite = Announce the change when the screen reader has a suitable opportunity, rather than interrupting immediately -->
+
+    <!-- Load the separate JavaScript file required by the task -->
+    <script src="task04.js"></script>
+</body>
+</html>

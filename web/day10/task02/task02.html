@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task 02 - Email Validation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Email validation</h1>
+
+    <!-- The user enters an email and submits this form -->
+    <form id="email-form">
+        <label for="email">Enter your email address:</label>
+
+        <!--
+            name="email" is important:
+            PHP will read this field using $_POST["email"]
+            Important: name="email" is essential. 
+            The id="email" is useful for connecting the label to the input and selecting it with JavaScript, 
+            but PHP uses the name attribute to identify the submitted field
+        -->
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="abir@example.com"
+            required
+        >
+
+        <button type="submit">Validate email</button>
+    </form>
+
+    <script>
+        // Select the form from the HTML page
+        const form = document.querySelector("#email-form");
+
+        // Listen for the form's submit event
+        form.addEventListener("submit", function (event) {
+
+            // Prevent the browser's normal form submission -> This lets JS send the request without reloading the page
+            event.preventDefault();
+
+            // Collect all named fields in the form
+            const formData = new FormData(form);
+
+            // Serialize the form fields into URL-encoded text
+            // Example: email=abir%40example.com
+            const serializedData = new URLSearchParams(formData);
+
+            // Send the form data to PHP using an asynchronous POST request
+            fetch("task02.php", {
+                method: "POST",
+
+                // Tell PHP that the request body contains URL-encoded form data
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+
+                // POST data goes in the request body, not in the URL
+                body: serializedData
+            })
+
+            // Convert PHP's JSON response into a JavaScript object
+            .then(function (response) {
+                // fetch() does not reject just because the server returns 400.
+                // We still read the response body to get PHP's message.
+                return response.json().then(function (data) {
+                    return {
+                        ok: response.ok,
+                        data: data
+                    };
+                });
+            })
+
+            // Decide what alert to show based on PHP's response
+            .then(function (result) {
+                if (result.ok && result.data.valid === true) {
+                    alert("The email address is valid!");
+                } else {
+                    alert("The email address is invalid.");
+                }
+            })
+
+            // Handle network errors or a response that cannot be parsed as JSON
+            .catch(function (error) {
+                console.error("AJAX request failed:", error);
+                alert("An error occurred while checking the email.");
+            });
+        });
+    </script>
+</body>
+</html>
