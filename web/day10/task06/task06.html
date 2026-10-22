@@ -1,0 +1,124 @@
+<!-- This creates the form and a message area to tell the user whether a product was added or updated -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 06 - Add or Update Products</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 18px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .success {
+            color: #176b36;
+            background: #e8f5eb;
+        }
+
+        .error {
+            color: #b42318;
+            background: #fdecea;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Add or Update a Product</h1>
+
+    <p>
+        Enter the product information. If the type and brand already
+        exist together, their price and stock will be updated.
+        Otherwise, a new product will be added.
+    </p>
+
+    <form id="product-form">
+        <div class="field">
+            <label for="type">Product type</label>
+            <input
+                type="text"
+                id="type"
+                name="type"
+                placeholder="e.g. phone"
+                required
+            >
+        </div>
+
+        <div class="field">
+            <label for="brand">Brand</label>
+            <input
+                type="text"
+                id="brand"
+                name="brand"
+                placeholder="e.g. Samsung"
+                required
+            >
+        </div>
+
+        <div class="field">
+            <label for="price">Price</label>
+            <input
+                type="number"
+                id="price"
+                name="price"
+                min="0"
+                step="1"
+                placeholder="e.g. 150"
+                required
+            >
+        </div>
+
+        <div class="field">
+            <label for="number">Stock quantity</label>
+            <input
+                type="number"
+                id="number"
+                name="number"
+                min="0"
+                step="1"
+                placeholder="e.g. 8"
+                required
+            >
+        </div>
+
+        <button type="submit">Save product</button>
+    </form>
+
+    <!-- JS displays success and error messages here -->
+    <p id="message" role="status" aria-live="polite"></p>
+
+    <script src="task06.js"></script>
+</body>
+</html>
