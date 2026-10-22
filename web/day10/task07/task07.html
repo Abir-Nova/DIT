@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task 07 - Mini Chat</title>
+    <link rel="stylesheet" href="task07.css">
+</head>
+
+<body>
+    <main class="chat-app">
+        <header class="chat-header">
+            <h1>Little Chat 🌿</h1>
+            <p>A small place to share a thought.</p>
+
+            <!-- JS updates this status-->
+            <div class="status" id="connection-status">
+                Connecting to chat...
+            </div>
+        </header>
+
+        <!-- JS inserts the messages into this container -->
+        <section id="messages" aria-label="Chat messages" aria-live="polite">
+            <p class="empty-state">Loading messages...</p>
+        </section>
+
+        <!-- Submitting this form will not reload the page -->
+        <form id="chat-form" class="chat-form">
+            <div>
+                <label for="name">Your name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    maxlength="50"
+                    placeholder="e.g. Abir"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="message">Your message</label>
+                <textarea
+                    id="message"
+                    name="message"
+                    maxlength="1000"
+                    placeholder="Write something nice..."
+                    required
+                ></textarea>
+            </div>
+
+            <button type="submit" id="send-button">Send message ↗</button>
+
+            <!-- Errors and confirmation messages appear here -->
+            <p id="feedback" role="status" aria-live="polite"></p>
+        </form>
+    </main>
+
+    <script src="task07.js"></script>
+</body>
+</html>
