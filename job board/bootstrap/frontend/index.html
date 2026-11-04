@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore job opportunities on HireLoop">
+  <title>HireLoop — Find your next opportunity</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="HireLoop home">
+      <span class="brand-mark">H</span>
+      <span>HireLoop</span>
+    </a>
+    <span class="header-note">A better way to find your next role</span>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">OPPORTUNITIES, CONNECTED</p>
+      <h1 id="page-title">Find work that <em>moves you</em></h1>
+      <p class="hero-copy">Explore roles from companies building what's next</p>
+      <div class="hero-meta">
+        <span><span class="status-dot"></span> Live opportunities</span>
+        <span id="job-count">Loading opportunities…</span>
+      </div>
+    </section>
+
+    <section class="jobs-section" aria-labelledby="jobs-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">THE OPEN ROLES</p>
+          <h2 id="jobs-title">Explore opportunities</h2>
+        </div>
+      </div>
+
+      <p id="status-message" class="status-message" role="status" aria-live="polite">
+        Loading job ads…
+      </p>
+
+      <div id="jobs-list" class="jobs-grid"></div>
+    </section>
+
+    <section id="details-section" class="details-section" aria-labelledby="details-title" hidden>
+      <div class="details-heading">
+        <div>
+          <p class="eyebrow">ROLE DETAILS</p>
+          <h2 id="details-title">About this opportunity</h2>
+        </div>
+        <button id="close-details" class="button button-secondary" type="button">Close details</button>
+      </div>
+      <div id="details-content" class="details-card"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>HireLoop</span>
+    <span>Connecting people with possibilities</span>
+  </footer>
+</body>
+</html>

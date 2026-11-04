@@ -1,0 +1,9 @@
+# Ignore all compiled Java files
+*.class
+
+# Ignore personal testing files
+Example.java
+TestMain.java
+
+# Ignore VS Code workspace settings
+.vscode/

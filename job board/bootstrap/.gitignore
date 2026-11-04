@@ -1,0 +1,13 @@
+# Installed packages are recreated with npm install
+backend/node_modules/
+
+# Local secrets must never be committed
+backend/.env
+
+# Debug logs
+npm-debug.log*
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db

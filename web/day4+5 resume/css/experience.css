@@ -157,6 +157,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -179,7 +180,11 @@
   --hand: "Caveat", cursive;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 /* The stage is designed on a 1672 x 941 grid; --u = 1 design pixel */
 .stage {
@@ -194,9 +199,22 @@
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .4 0 0 0 0 .3 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.stage * { position: absolute; }
-.stage li, .stage ul, .stage ol, .stage h3, .stage p, .stage br, .stage em,
-.stage .card-body, .stage .card-body *, .stage .title * { position: static; }
+.stage * {
+  position: absolute;
+}
+
+.stage li,
+.stage ul,
+.stage ol,
+.stage h3,
+.stage p,
+.stage br,
+.stage em,
+.stage .card-body,
+.stage .card-body *,
+.stage .title * {
+  position: static;
+}
 
 @media (max-width: 900px) {
   .stage {
@@ -208,7 +226,10 @@
 }
 
 /*  Decorations  */
-.deco { inset: 0; pointer-events: none; }
+.deco {
+  inset: 0;
+  pointer-events: none;
+}
 
 .line-arc-left {
   left: calc(-260 * var(--u));
@@ -239,10 +260,30 @@
   box-shadow: 0 calc(-2 * var(--u)) calc(10 * var(--u)) rgba(0, 0, 0, 0.06);
 }
 
-.rule { background: var(--line); }
-.rule-left { left: 0; top: calc(736 * var(--u)); width: calc(245 * var(--u)); height: 1px; }
-.rule-right-v { left: calc(1515 * var(--u)); top: 0; width: 1px; height: calc(575 * var(--u)); }
-.rule-right-h { left: calc(1515 * var(--u)); top: calc(575 * var(--u)); width: calc(160 * var(--u)); height: 1px; }
+.rule {
+  background: var(--line);
+}
+
+.rule-left {
+  left: 0;
+  top: calc(736 * var(--u));
+  width: calc(245 * var(--u));
+  height: 1px;
+}
+
+.rule-right-v {
+  left: calc(1515 * var(--u));
+  top: 0;
+  width: 1px;
+  height: calc(575 * var(--u));
+}
+
+.rule-right-h {
+  left: calc(1515 * var(--u));
+  top: calc(575 * var(--u));
+  width: calc(160 * var(--u));
+  height: 1px;
+}
 
 .line-arc-bottom {
   left: calc(-40 * var(--u));
@@ -306,14 +347,44 @@
   mask-image: radial-gradient(ellipse at 60% 55%, #000 45%, transparent 72%);
 }
 
-.sparkle path { fill: #8e2f22; stroke: #8e2f22; stroke-width: 1; }
-.sparkle-top { left: calc(1396 * var(--u)); top: calc(46 * var(--u)); width: calc(40 * var(--u)); height: calc(80 * var(--u)); }
-.sparkle-right { left: calc(1545 * var(--u)); top: calc(502 * var(--u)); width: calc(32 * var(--u)); height: calc(32 * var(--u)); }
-.sparkle-green { left: calc(347 * var(--u)); top: calc(803 * var(--u)); width: calc(30 * var(--u)); height: calc(30 * var(--u)); }
-.sparkle-green path { fill: var(--green-dark); stroke: var(--green-dark); }
+.sparkle path {
+  fill: #8e2f22;
+  stroke: #8e2f22;
+  stroke-width: 1;
+}
+
+.sparkle-top {
+  left: calc(1396 * var(--u));
+  top: calc(46 * var(--u));
+  width: calc(40 * var(--u));
+  height: calc(80 * var(--u));
+}
+
+.sparkle-right {
+  left: calc(1545 * var(--u));
+  top: calc(502 * var(--u));
+  width: calc(32 * var(--u));
+  height: calc(32 * var(--u));
+}
+
+.sparkle-green {
+  left: calc(347 * var(--u));
+  top: calc(803 * var(--u));
+  width: calc(30 * var(--u));
+  height: calc(30 * var(--u));
+}
+
+.sparkle-green path {
+  fill: var(--green-dark);
+  stroke: var(--green-dark);
+}
 
 /*  Collage  */
-.collage { inset: 0; margin: 0; pointer-events: none; }
+.collage {
+  inset: 0;
+  margin: 0;
+  pointer-events: none;
+}
 
 .photo-arch {
   left: calc(163 * var(--u));
@@ -324,6 +395,7 @@
   overflow: hidden;
   box-shadow: 0 calc(6 * var(--u)) calc(18 * var(--u)) rgba(0, 0, 0, 0.12);
 }
+
 .photo-arch img {
   position: static;
   width: 100%;
@@ -337,6 +409,7 @@
   box-shadow: 0 calc(2 * var(--u)) calc(6 * var(--u)) rgba(0, 0, 0, 0.1);
   clip-path: polygon(2% 6%, 98% 0, 100% 94%, 0 100%);
 }
+
 .tape-top {
   left: calc(140 * var(--u));
   top: calc(175 * var(--u));
@@ -344,6 +417,7 @@
   height: calc(50 * var(--u));
   transform: rotate(-20deg);
 }
+
 .tape-bottom {
   left: calc(275 * var(--u));
   top: calc(665 * var(--u));
@@ -380,7 +454,14 @@
   width: calc(34 * var(--u));
   height: calc(26 * var(--u));
 }
-.hand-arrow path { fill: none; stroke: #2b2b28; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.hand-arrow path {
+  fill: none;
+  stroke: #2b2b28;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
 /*  Header  */
 .stage .section-label {
@@ -393,7 +474,11 @@
   letter-spacing: 0.14em;
   color: var(--green-dark);
 }
-.stage .section-label span { position: static; margin: 0 calc(12 * var(--u)); }
+
+.stage .section-label span {
+  position: static;
+  margin: 0 calc(12 * var(--u));
+}
 
 .title {
   left: calc(600 * var(--u));
@@ -407,6 +492,7 @@
   letter-spacing: -0.02em;
   color: var(--ink);
 }
+
 .title em {
   display: block;
   padding-left: calc(62 * var(--u));
@@ -414,6 +500,7 @@
   font-size: calc(80 * var(--u));
   color: var(--green);
 }
+
 .title .swash {
   position: absolute;
   left: calc(175 * var(--u));
@@ -421,7 +508,13 @@
   width: calc(195 * var(--u));
   height: calc(28 * var(--u));
 }
-.swash path { fill: none; stroke: #2b2420; stroke-width: 2.4; stroke-linecap: round; }
+
+.swash path {
+  fill: none;
+  stroke: #2b2420;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
 
 /*  Timeline  */
 .stage .timeline {
@@ -434,6 +527,7 @@
   flex-direction: column;
   gap: calc(20 * var(--u));
 }
+
 .timeline::before {
   content: "";
   position: absolute;
@@ -492,11 +586,37 @@
   place-items: center;
   box-shadow: inset 0 0 0 calc(3 * var(--u)) rgba(255, 255, 255, 0.4);
 }
-.icon svg { position: static; width: 58%; height: 58%; }
-.icon svg path { fill: none; stroke: var(--green-dark); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.icon svg.filled path { fill: var(--green-dark); stroke: none; }
-.icon svg.filled .cut { fill: none; stroke: var(--sage); stroke-width: 2.4; }
-.icon svg.filled .pulse { fill: none; stroke: var(--sage); stroke-width: 2.6; }
+
+.icon svg {
+  position: static;
+  width: 58%;
+  height: 58%;
+}
+
+.icon svg path {
+  fill: none;
+  stroke: var(--green-dark);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon svg.filled path {
+  fill: var(--green-dark);
+  stroke: none;
+}
+
+.icon svg.filled .cut {
+  fill: none;
+  stroke: var(--sage);
+  stroke-width: 2.4;
+}
+
+.icon svg.filled .pulse {
+  fill: none;
+  stroke: var(--sage);
+  stroke-width: 2.6;
+}
 
 .eyebrow {
   font-family: var(--mono);
@@ -532,6 +652,7 @@
   display: flex;
   gap: calc(13 * var(--u));
 }
+
 .tags li {
   font-family: var(--mono);
   font-weight: 700;

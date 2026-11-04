@@ -1,0 +1,673 @@
+
+/* =========================================
+   CONTACT CTA — DESIGN TOKENS
+========================================= */
+
+:host {
+  --closing-cream: #f5eee8;
+  --closing-ink: #3d2925;
+  --closing-green: #0d5c3c;
+  --closing-dark: #09140f;
+  --closing-gold: #c19344;
+  --closing-muted: #77746c;
+
+  display: block;
+  color: var(--closing-ink);
+}
+
+.closing-section,
+.closing-footer {
+  box-sizing: border-box;
+}
+
+.closing-section *,
+.closing-footer * {
+  box-sizing: border-box;
+}
+
+.closing-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 75% 35%,
+      rgba(193, 147, 68, 0.08),
+      transparent 36%
+    ),
+    var(--closing-cream);
+  padding: clamp(90px, 12vw, 165px) max(7%, calc((100% - 1320px) / 2));
+  isolation: isolate;
+}
+
+/* A subtle moving background glow */
+.closing-section::before {
+  content: "";
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  right: 3%;
+  top: 8%;
+  border-radius: 50%;
+  background: rgba(13, 92, 60, 0.035);
+  filter: blur(65px);
+  pointer-events: none;
+  animation: glow-drift 9s ease-in-out infinite alternate;
+}
+
+.closing-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(250px, 0.8fr);
+  align-items: center;
+  gap: clamp(35px, 7vw, 110px);
+  max-width: 1320px;
+  margin-inline: auto;
+}
+
+.closing-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  margin: 0 0 30px;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  line-height: 1.8;
+  letter-spacing: 0.13em;
+  font-weight: 500;
+}
+
+.closing-copy > .eyebrow {
+  color: var(--closing-green);
+}
+
+.closing-title {
+  max-width: 900px;
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(44px, 6.2vw, 94px);
+  line-height: 0.99;
+  letter-spacing: -0.065em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.title-accent {
+  color: var(--closing-green);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.closing-description {
+  margin: 32px 0 35px;
+  font-size: clamp(16px, 1.5vw, 21px);
+  line-height: 1.7;
+  color: var(--closing-ink);
+}
+
+/* CTA button */
+.closing-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 64px;
+  padding: 0 32px;
+  overflow: hidden;
+  border: 1px solid var(--closing-green);
+  border-radius: 100px;
+  background: var(--closing-green);
+  color: #fffaf2;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  transition:
+    background 350ms ease,
+    color 350ms ease,
+    transform 350ms cubic-bezier(.2, .8, .2, 1),
+    box-shadow 350ms ease;
+}
+
+.closing-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--closing-cream);
+  border-radius: inherit;
+  transform: translateY(105%);
+  transition: transform 350ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.closing-cta span {
+  position: relative;
+  z-index: 1;
+}
+
+.closing-cta:hover {
+  color: var(--closing-green);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(13, 92, 60, 0.16);
+}
+
+.closing-cta:hover::before {
+  transform: translateY(0);
+}
+
+.cta-arrow {
+  display: inline-block;
+  font-size: 21px;
+  transition: transform 350ms ease;
+}
+
+.closing-cta:hover .cta-arrow {
+  transform: translate(4px, -4px);
+}
+
+.closing-cta:focus-visible,
+.footer-links a:focus-visible,
+.footer-bottom a:focus-visible {
+  outline: 3px solid var(--closing-gold);
+  outline-offset: 5px;
+}
+
+/* =========================================
+   ORBITAL ANIMATION
+========================================= */
+
+.orbit-art {
+  position: relative;
+  width: min(100%, 390px);
+  aspect-ratio: 1;
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.orbit {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  border: 1px solid var(--closing-green);
+  border-radius: 50%;
+}
+
+.orbit-one {
+  animation: orbit-breathe 6s ease-in-out infinite;
+}
+
+.orbit-two {
+  width: 86%;
+  height: 86%;
+  border-color: rgba(13, 92, 60, 0.45);
+  border-style: dashed;
+  animation: orbit-spin 35s linear infinite;
+}
+
+.orbit-three {
+  width: 108%;
+  height: 52%;
+  border-color: var(--closing-gold);
+  transform: rotate(-42deg);
+  animation: orbit-tilt 8s ease-in-out infinite alternate;
+}
+
+.orbit-center {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--closing-green);
+  color: #fffaf2;
+  text-decoration: none;
+  box-shadow: 0 0 0 0 rgba(13, 92, 60, 0.2);
+  animation: center-pulse 3s ease-in-out infinite;
+  transition:
+    background 300ms ease,
+    transform 300ms ease;
+}
+
+.orbit-center span {
+  font-family: Arial, sans-serif;
+  font-size: 47px;
+  font-weight: 300;
+  line-height: 1;
+  transition: transform 300ms ease;
+}
+
+.orbit-center:hover {
+  background: var(--closing-ink);
+  transform: scale(1.08);
+}
+
+.orbit-center:hover span {
+  transform: translate(4px, -4px);
+}
+
+.orbit-dot {
+  position: absolute;
+  z-index: 3;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--closing-gold);
+  box-shadow: 0 0 0 5px rgba(193, 147, 68, 0.09);
+}
+
+.dot-one {
+  top: 10%;
+  right: 24%;
+}
+
+.dot-two {
+  bottom: 18%;
+  left: 23%;
+  width: 17px;
+  height: 17px;
+}
+
+.dot-three {
+  top: 36%;
+  left: 8%;
+  width: 10px;
+  height: 10px;
+}
+
+.orbit-star {
+  position: absolute;
+  z-index: 1;
+  color: var(--closing-green);
+  animation: star-float 4s ease-in-out infinite alternate;
+}
+
+.star-one {
+  top: 15%;
+  left: 12%;
+  font-size: 32px;
+}
+
+.star-two {
+  top: 45%;
+  right: 1%;
+  color: var(--closing-gold);
+  font-size: 38px;
+  animation-delay: -1s;
+}
+
+.star-three {
+  bottom: 11%;
+  right: 21%;
+  font-size: 25px;
+  animation-delay: -2s;
+}
+
+/* =========================================
+   DARK CLOSING FOOTER
+========================================= */
+
+.closing-footer {
+  position: relative;
+  overflow: hidden;
+  padding: 75px max(7%, calc((100% - 1420px) / 2)) 24px;
+  background: var(--closing-dark);
+  color: var(--closing-cream);
+  border-top: 4px solid var(--closing-gold);
+  isolation: isolate;
+}
+
+.closing-footer::before,
+.closing-footer::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(245, 238, 232, 0.035);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.closing-footer::before {
+  width: 600px;
+  height: 600px;
+  right: -200px;
+  top: -300px;
+  box-shadow:
+    0 0 0 38px rgba(245, 238, 232, 0.015),
+    0 0 0 76px rgba(245, 238, 232, 0.01);
+}
+
+.closing-footer::after {
+  width: 260px;
+  height: 260px;
+  left: -190px;
+  bottom: -150px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 45px;
+  max-width: 1420px;
+  margin-inline: auto;
+  padding-bottom: 90px;
+}
+
+.footer-eyebrow {
+  color: var(--closing-cream);
+  margin-bottom: 28px;
+}
+
+.footer-eyebrow span {
+  color: var(--closing-gold);
+}
+
+.footer-statement {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(45px, 8vw, 125px);
+  line-height: 1;
+  letter-spacing: -0.075em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.footer-statement > span {
+  color: var(--closing-gold);
+}
+
+.footer-details {
+  min-width: 235px;
+  align-self: center;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+
+.footer-links a,
+.footer-bottom a {
+  color: var(--closing-cream);
+  text-decoration: none;
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  transition: color 250ms ease;
+}
+
+.footer-links a:hover,
+.footer-bottom a:hover {
+  color: var(--closing-gold);
+}
+
+.footer-line {
+  width: 52px;
+  height: 3px;
+  margin: 35px 0 22px;
+  background: var(--closing-gold);
+  transform-origin: left;
+  animation: line-grow 1.4s ease-out both;
+}
+
+.footer-note {
+  margin: 0;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  color: rgba(245, 238, 232, 0.8);
+}
+
+.footer-note span {
+  color: var(--closing-gold);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  max-width: 1420px;
+  margin-inline: auto;
+  padding-top: 22px;
+  border-top: 1px solid rgba(245, 238, 232, 0.15);
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  color: rgba(245, 238, 232, 0.65);
+}
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 800ms ease,
+    transform 800ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.is-visible .reveal-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.is-visible .reveal-item:nth-child(2) {
+  transition-delay: 120ms;
+}
+
+.is-visible .reveal-item:nth-child(3) {
+  transition-delay: 220ms;
+}
+
+.is-visible .reveal-item:nth-child(4) {
+  transition-delay: 320ms;
+}
+
+.orbit-art {
+  opacity: 0;
+  transform: scale(0.9);
+  transition:
+    opacity 900ms ease 180ms,
+    transform 900ms cubic-bezier(.2, .7, .2, 1) 180ms;
+}
+
+.is-visible .orbit-art {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =========================================
+   KEYFRAMES
+========================================= */
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes orbit-tilt {
+  from {
+    transform: rotate(-42deg) scale(1);
+  }
+  to {
+    transform: rotate(-32deg) scale(1.04);
+  }
+}
+
+@keyframes center-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(13, 92, 60, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(13, 92, 60, 0);
+  }
+}
+
+@keyframes star-float {
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+  to {
+    transform: translateY(-10px) rotate(12deg);
+  }
+}
+
+@keyframes glow-drift {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-35px, 25px);
+  }
+}
+
+@keyframes line-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 900px) {
+  .closing-section {
+    padding-inline: 6%;
+  }
+
+  .closing-inner {
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 25px;
+  }
+
+  .closing-title {
+    font-size: clamp(43px, 6.5vw, 68px);
+  }
+
+  .orbit-center {
+    width: 78px;
+    height: 78px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+  }
+
+  .footer-statement {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 600px) {
+  .closing-section {
+    padding: 85px 7% 75px;
+  }
+
+  .closing-inner {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    margin-bottom: 23px;
+  }
+
+  .closing-title {
+    font-size: clamp(43px, 11vw, 64px);
+    line-height: 1.04;
+    letter-spacing: -0.055em;
+  }
+
+  .closing-description {
+    margin: 24px 0 27px;
+    font-size: 16px;
+  }
+
+  .closing-cta {
+    min-height: 57px;
+    padding-inline: 25px;
+  }
+
+  .orbit-art {
+    width: min(72vw, 280px);
+    margin: 15px auto 0;
+  }
+
+  .closing-footer {
+    padding: 55px 7% 22px;
+  }
+
+  .footer-top {
+    gap: 35px;
+    padding-bottom: 45px;
+  }
+
+  .footer-statement {
+    font-size: clamp(42px, 10vw, 64px);
+    line-height: 1.06;
+  }
+
+  .footer-details {
+    min-width: 0;
+  }
+
+  .footer-links {
+    gap: 20px;
+  }
+
+  .footer-line {
+    margin: 25px 0 18px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    font-size: 9px;
+  }
+}
+
+/* Respect the visitor's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-item,
+  .orbit-art {
+    opacity: 1;
+    transform: none;
+  }
+}
