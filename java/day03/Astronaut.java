@@ -1,5 +1,8 @@
-// No "package" line: this class lives in the DEFAULT package (project root)
+// No "package" line: this class lives in the DEFAULT package (project root) 
+// It can USE classes of named packages
+// but a class inside a named package can never import a class of the default package
 // exactly as the PDF delivery path "./Astronaut.java" says
+
 
 public class Astronaut {
 
@@ -37,5 +40,49 @@ public class Astronaut {
 
     public int getId() {
         return this.id;
+    }
+
+    // OPTIONAL PARAMETER = OVERLOADING (as on Day 02): 3 methods but one name 
+    // We write the FULL class names (planet.Mars / chocolate.Mars) because both classes are called Mars
+    // importing both would be ambiguous so The compiler picks the right version from the argument's type
+    // (Careful: never name a variable "planet" or "chocolate" here, it would hide the package
+
+    // doActions()  -> no parameter
+    public void doActions() {
+        System.out.println(this.name + ": Nothing to do.");
+        remindAboutSnacks();
+    }
+
+    // doActions(planet.Mars) -> a mission: the landing site becomes the destination
+    public void doActions(planet.Mars mars) {
+        if (mars == null) { // defensive: a null argument behaves like "no parameter"
+            doActions();
+            return;
+        }
+        System.out.println(this.name + ": Started a mission!");
+        this.destination = mars.getLandingSite();
+        remindAboutSnacks();
+    }
+
+    // doActions(chocolate.Mars) -> a snack: thanks, and one more snack in the bag
+    // (note: the statement shows no final period for this sentence)
+    public void doActions(chocolate.Mars bar) {
+        if (bar == null) {
+            doActions();
+            return;
+        }
+        System.out.println(this.name + ": Thanks for this Mars number " + bar.getId());
+        this.snacks++;
+        remindAboutSnacks();
+    }
+
+    // Helper shared by all versions: 
+    // after each previous sentence, if the astronaut has no destination, display the snack reminder
+    // It reads the state AFTER the update, so the snack count includes the chocolate just received.
+    private void remindAboutSnacks() {
+        if (this.destination == null) {
+            System.out.println(this.name + ": I may have done nothing, but I have "
+                    + this.snacks + " Mars to eat at least!");
+        }
     }
 }

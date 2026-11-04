@@ -4,7 +4,7 @@
 
 package chocolate;
 
-// "public" is now essential: a class without it is visible only INSIDE its own package
+// "public" is: now essential: a class without it is visible only INSIDE its own package
 // so other packages (and the default package of TestMain) could not use it
 
 public class Mars{
