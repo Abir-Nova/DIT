@@ -3,6 +3,7 @@
 
 # Ignore personal testing files
 TestMain.java
+Example.java
 
 # Ignore VS Code workspace settings
 .vscode/
