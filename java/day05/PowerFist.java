@@ -1,0 +1,11 @@
+public class PowerFist extends Weapon {
+
+    public PowerFist() {
+        super("Power Fist", 8, 50, true); // PowerFist: a close-combat weapon (melee = true)
+    }
+
+    @Override
+    public void attack() {
+        System.out.println("SBAM");
+    }
+}
