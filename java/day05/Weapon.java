@@ -38,4 +38,16 @@ public abstract class Weapon {
 
     // Abstract method: no body here , Every child MUST implement its own attack()
     public abstract void attack();
+
+    // Bookkeeping for SpaceMarine.equip: a weapon can belong to only one marine at a time
+    private boolean taken = false;
+
+    // Package-private helpers (no modifier): only the classes of this folder, (SpaceMarine) use them
+    boolean isTaken() {
+        return this.taken;
+    }
+
+    void setTaken(boolean taken) {
+        this.taken = taken;
+    }
 }
