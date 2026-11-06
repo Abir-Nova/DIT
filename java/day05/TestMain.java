@@ -6,12 +6,6 @@ public class TestMain {
     private static int passed = 0;
     private static int failed = 0;
 
-    static class TestMarine extends SpaceMarine {
-        public TestMarine(String name, int hp, int ap) {
-            super(name, hp, ap);
-        }
-    }
-
     public static void check(String description, boolean condition) {
         if (condition) {
             System.out.println("[PASS] " + description);
@@ -31,7 +25,6 @@ public class TestMain {
             System.setOut(testOut);
             action.run();
             testOut.flush();
-
             return output.toString().replace("\r\n", "\n");
         } finally {
             System.setOut(originalOut);
@@ -41,177 +34,130 @@ public class TestMain {
 
     public static void main(String[] args) {
 
-        System.out.println("===== EXERCISE 05: SPACEMARINE TESTS =====\n");
+        System.out.println("===== EXERCISE 06: MARINE TESTS =====\n");
 
-        TestMarine marine = new TestMarine("Marine", 100, 30);
-        TestMarine otherMarine = new TestMarine("Other", 100, 30);
-        TestMarine target = new TestMarine("Target", 100, 20);
+        // TACTICAL MARINE CONSTRUCTOR
+        final TacticalMarine[] tactical = new TacticalMarine[1];
 
-        // Initial state
-        check("SpaceMarine starts without a weapon",
-                marine.getWeapon() == null);
-
-        check("SpaceMarine has the correct name",
-                marine.getName().equals("Marine"));
-
-        // Equip a Plasma Rifle
-        PlasmaRifle rifle = new PlasmaRifle();
-
-        String equipOutput = captureOutput(() -> marine.equip(rifle));
-
-        check("Can equip a Plasma Rifle",
-                marine.getWeapon() == rifle);
-
-        check("Equip displays the correct message",
-                equipOutput.equals(
-                    "Marine has been equipped with a Plasma Rifle.\n"
-                ));
-
-        // Another marine cannot take the same weapon
-        String stolenOutput = captureOutput(() -> otherMarine.equip(rifle));
-
-        check("Another marine cannot equip an already taken weapon",
-                otherMarine.getWeapon() == null);
-
-        check("Failed equip produces no message",
-                stolenOutput.isEmpty());
-
-        // Replacing a weapon releases the previous one
-        PowerFist fist = new PowerFist();
-
-        check("Can replace the equipped weapon",
-                marine.equip(fist));
-
-        check("Previous weapon becomes available again",
-                !rifle.isTaken());
-
-        check("New weapon is marked as taken",
-                fist.isTaken());
-
-        check("Another marine can now equip the released weapon",
-                otherMarine.equip(rifle));
-
-        // Empty-handed attack
-        TestMarine emptyMarine = new TestMarine("Empty", 100, 30);
-
-        String emptyOutput = captureOutput(() -> emptyMarine.attack(target));
-
-        check("Empty-handed attack returns false",
-                !emptyMarine.attack(target));
-
-        check("Empty-handed attack displays the correct message",
-                emptyOutput.equals(
-                    "Empty: Hey, this is crazy. I'm not going to fight this empty-handed.\n"
-                ));
-
-        // Melee weapon cannot attack from a distance
-        String distantOutput = captureOutput(() -> marine.attack(target));
-
-        check("Melee attack fails when too far away",
-                !marine.attack(target));
-
-        check("Correct too-far message is displayed",
-                distantOutput.equals(
-                    "Marine: I'm too far away from Target.\n"
-                ));
-
-        check("Failed melee attack does not consume AP",
-                marine.getAp() == 30);
-
-        // Move into melee range
-        marine.moveCloseTo(target);
-
-        // Successful melee attack
-        String attackOutput = captureOutput(() -> marine.attack(target));
-
-        check("Melee attack succeeds in range",
-                marine.attack(target));
-
-        check("Successful melee attack deducts 8 AP",
-                marine.getAp() == 14);
-
-        check("Successful melee attack deals 50 damage",
-                target.getHp() == 50);
-
-        check("Attack message and weapon sound are in the right order",
-                attackOutput.equals(
-                    "Marine attacks Target with a Power Fist.\nSBAM\n"
-                ));
-
-        // Ranged weapon can attack without moving closer
-        TestMarine rangedMarine = new TestMarine("Ranged", 100, 30);
-        TestMarine rangedTarget = new TestMarine("RangedTarget", 100, 20);
-
-        PlasmaRifle rangedRifle = new PlasmaRifle();
-        rangedMarine.equip(rangedRifle);
-
-        check("Ranged marine does not need to move closer",
-                !rangedMarine.moveCloseTo(rangedTarget));
-
-        String rangedOutput = captureOutput(
-                () -> rangedMarine.attack(rangedTarget)
+        String tacticalOutput = captureOutput(
+            () -> tactical[0] = new TacticalMarine("Tactical")
         );
 
-        check("Ranged weapon attacks without melee range",
-                rangedTarget.getHp() == 79);
+        TacticalMarine tm = tactical[0];
 
-        check("Ranged attack uses the correct output",
-                rangedOutput.equals(
-                    "Ranged attacks RangedTarget with a Plasma Rifle.\nPIOU\n"
+        check("TacticalMarine is created",
+                tm != null);
+
+        check("TacticalMarine displays the correct constructor messages",
+                tacticalOutput.equals(
+                    "Tactical on duty.\n"
+                    + "Tactical has been equipped with a Plasma Rifle.\n"
                 ));
 
-        check("Ranged attack deducts 5 AP",
-                rangedMarine.getAp() == 25);
+        check("TacticalMarine has 100 HP",
+                tm.getHp() == 100);
 
-        // Insufficient AP
-        TestMarine lowAPMarine = new TestMarine("LowAP", 100, 4);
-        lowAPMarine.equip(new PlasmaRifle());
+        check("TacticalMarine has 20 AP",
+                tm.getAp() == 20);
 
-        String lowAPOutput = captureOutput(
-                () -> lowAPMarine.attack(target)
+        check("TacticalMarine has a PlasmaRifle",
+                tm.getWeapon() instanceof PlasmaRifle);
+
+        check("TacticalMarine has the correct weapon name",
+                tm.getWeapon().getName().equals("Plasma Rifle"));
+
+        check("PlasmaRifle has 5 AP cost",
+                tm.getWeapon().getApcost() == 5);
+
+        check("PlasmaRifle deals 21 damage",
+                tm.getWeapon().getDamage() == 21);
+
+        check("PlasmaRifle is not melee",
+                !tm.getWeapon().isMelee());
+
+        // TACTICAL MARINE RECOVERY
+        tm.recoverAP();
+
+        check("TacticalMarine recovers 12 AP",
+                tm.getAp() == 32);
+
+        tm.recoverAP();
+        tm.recoverAP();
+
+        check("TacticalMarine AP does not exceed 50",
+                tm.getAp() == 50);
+
+        // ASSAULT TERMINATOR CONSTRUCTOR
+        final AssaultTerminator[] assault = new AssaultTerminator[1];
+
+        String assaultOutput = captureOutput(
+            () -> assault[0] = new AssaultTerminator("Assault")
         );
 
-        check("Insufficient AP prevents attack",
-                !lowAPMarine.attack(target));
+        AssaultTerminator at = assault[0];
 
-        check("Insufficient AP attack produces no message",
-                lowAPOutput.isEmpty());
+        check("AssaultTerminator is created",
+                at != null);
 
-        check("Insufficient AP is not deducted",
-                lowAPMarine.getAp() == 4);
+        check("AssaultTerminator displays the correct constructor messages",
+                assaultOutput.equals(
+                    "Assault has teleported from space.\n"
+                    + "Assault has been equipped with a Power Fist.\n"
+                ));
 
-        // AP recovery
-        TestMarine recoveryMarine = new TestMarine("Recovery", 100, 20);
+        check("AssaultTerminator has 150 HP",
+                at.getHp() == 150);
 
-        recoveryMarine.recoverAP();
+        check("AssaultTerminator has 30 AP",
+                at.getAp() == 30);
 
-        check("SpaceMarine recovers 9 AP",
-                recoveryMarine.getAp() == 29);
+        check("AssaultTerminator has a PowerFist",
+                at.getWeapon() instanceof PowerFist);
 
-        TestMarine almostFullMarine = new TestMarine("AlmostFull", 100, 48);
-        almostFullMarine.recoverAP();
+        check("PowerFist has the correct weapon name",
+                at.getWeapon().getName().equals("Power Fist"));
 
-        check("AP never exceeds 50",
-                almostFullMarine.getAp() == 50);
+        check("PowerFist has 8 AP cost",
+                at.getWeapon().getApcost() == 8);
 
-        // Dead marine
-        TestMarine deadMarine = new TestMarine("Dead", 0, 20);
-        deadMarine.equip(new PlasmaRifle());
+        check("PowerFist deals 50 damage",
+                at.getWeapon().getDamage() == 50);
 
-        check("Dead marine cannot equip",
-                !deadMarine.equip(new PlasmaRifle()));
+        check("PowerFist is a melee weapon",
+                at.getWeapon().isMelee());
 
-        check("Dead marine cannot attack",
-                !deadMarine.attack(target));
+        // ASSAULT TERMINATOR ARMOR
+        at.receiveDamage(10);
 
-        check("Dead marine cannot move",
-                !deadMarine.moveCloseTo(target));
+        check("Armor reduces 10 damage to 7",
+                at.getHp() == 143);
 
-        deadMarine.recoverAP();
+        at.receiveDamage(3);
 
-        check("Dead marine cannot recover AP",
-                deadMarine.getAp() == 20);
+        check("Armor reduces 3 damage to 1",
+                at.getHp() == 142);
 
+        at.receiveDamage(1);
+
+        check("Armor never reduces damage below 1",
+                at.getHp() == 141);
+
+        // Check that large damage cannot make HP negative
+        at.receiveDamage(1000);
+
+        check("AssaultTerminator HP never goes below zero",
+                at.getHp() == 0);
+
+        // Separate instance to test the minimum damage rule
+        AssaultTerminator minimumDamage =
+                new AssaultTerminator("Minimum");
+
+        minimumDamage.receiveDamage(1);
+
+        check("Minimum incoming damage still causes 1 damage",
+                minimumDamage.getHp() == 149);
+
+        // SUMMARY
         System.out.println("\n===== TEST SUMMARY =====");
         System.out.println("Passed: " + passed);
         System.out.println("Failed: " + failed);
@@ -223,4 +169,4 @@ public class TestMain {
             System.out.println("\nSOME TESTS FAILED!");
         }
     }
-} 
+}
