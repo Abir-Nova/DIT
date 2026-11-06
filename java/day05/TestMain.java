@@ -1,6 +1,4 @@
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 public class TestMain {
@@ -19,131 +17,144 @@ public class TestMain {
         }
     }
 
-    // Captures everything printed by a weapon's attack() method
-    public static String captureAttack(Weapon weapon) {
+    // A simple test class implementing Fighter
+    static class TestFighter implements Fighter {
 
-        PrintStream originalOut = System.out;
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-
-        try {
-            System.setOut(new PrintStream(output));
-            weapon.attack();
-        } finally {
-            System.setOut(originalOut);
+        public boolean equip(Weapon weapon) {
+            return true;
         }
 
-        return output.toString();
+        public boolean attack(Fighter fighter) {
+            return true;
+        }
+
+        public void receiveDamage(int damage) {
+        }
+
+        public boolean moveCloseTo(Fighter fighter) {
+            return true;
+        }
+
+        public void recoverAP() {
+        }
+
+        public String getName() {
+            return "Test Fighter";
+        }
+
+        public int getAp() {
+            return 20;
+        }
+
+        public int getHp() {
+            return 100;
+        }
     }
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println("===== EXERCISE 02: WEAPON TESTS =====\n");
+        System.out.println("===== EXERCISE 03: FIGHTER TESTS =====\n");
 
-        // TEST 1: Both classes inherit from Weapon
+        // TEST 1: Fighter must be an interface
         check(
-            "PlasmaRifle extends Weapon",
-            Weapon.class.isAssignableFrom(PlasmaRifle.class)
+            "Fighter is an interface",
+            Fighter.class.isInterface()
+        );
+
+        // TEST 2: Check the number of required methods
+        Method[] methods = Fighter.class.getDeclaredMethods();
+
+        check(
+            "Fighter contains exactly 8 methods",
+            methods.length == 8
+        );
+
+        // TEST 3: Check each method's exact signature
+        check(
+            "equip(Weapon) returns boolean",
+            Fighter.class.getDeclaredMethod("equip", Weapon.class)
+                .getReturnType() == boolean.class
         );
 
         check(
-            "PowerFist extends Weapon",
-            Weapon.class.isAssignableFrom(PowerFist.class)
-        );
-
-        // TEST 2: Both classes have public constructors without parameters
-        Constructor<?> plasmaConstructor =
-            PlasmaRifle.class.getDeclaredConstructor();
-
-        Constructor<?> fistConstructor =
-            PowerFist.class.getDeclaredConstructor();
-
-        check(
-            "PlasmaRifle has a public no-argument constructor",
-            Modifier.isPublic(plasmaConstructor.getModifiers())
+            "attack(Fighter) returns boolean",
+            Fighter.class.getDeclaredMethod("attack", Fighter.class)
+                .getReturnType() == boolean.class
         );
 
         check(
-            "PowerFist has a public no-argument constructor",
-            Modifier.isPublic(fistConstructor.getModifiers())
-        );
-
-        // TEST 3: Create both weapons
-        PlasmaRifle plasma = new PlasmaRifle();
-        PowerFist fist = new PowerFist();
-
-        // TEST 4: PlasmaRifle attributes
-        System.out.println("\n--- PlasmaRifle ---");
-
-        check(
-            "Name is Plasma Rifle",
-            plasma.getName().equals("Plasma Rifle")
+            "receiveDamage(int) returns void",
+            Fighter.class.getDeclaredMethod("receiveDamage", int.class)
+                .getReturnType() == void.class
         );
 
         check(
-            "AP cost is 5",
-            plasma.getApcost() == 5
+            "moveCloseTo(Fighter) returns boolean",
+            Fighter.class.getDeclaredMethod("moveCloseTo", Fighter.class)
+                .getReturnType() == boolean.class
         );
 
         check(
-            "Damage is 21",
-            plasma.getDamage() == 21
+            "recoverAP() returns void",
+            Fighter.class.getDeclaredMethod("recoverAP")
+                .getReturnType() == void.class
         );
 
         check(
-            "Melee is false",
-            !plasma.isMelee()
-        );
-
-        // TEST 5: PowerFist attributes
-        System.out.println("\n--- PowerFist ---");
-
-        check(
-            "Name is Power Fist",
-            fist.getName().equals("Power Fist")
+            "getName() returns String",
+            Fighter.class.getDeclaredMethod("getName")
+                .getReturnType() == String.class
         );
 
         check(
-            "AP cost is 8",
-            fist.getApcost() == 8
+            "getAp() returns int",
+            Fighter.class.getDeclaredMethod("getAp")
+                .getReturnType() == int.class
         );
 
         check(
-            "Damage is 50",
-            fist.getDamage() == 50
+            "getHp() returns int",
+            Fighter.class.getDeclaredMethod("getHp")
+                .getReturnType() == int.class
+        );
+
+        // TEST 4: All methods must be public and abstract
+        for (Method method : methods) {
+
+            int modifiers = method.getModifiers();
+
+            check(
+                method.getName() + "() is public",
+                Modifier.isPublic(modifiers)
+            );
+
+            check(
+                method.getName() + "() is abstract",
+                Modifier.isAbstract(modifiers)
+            );
+        }
+
+        // TEST 5: A class can implement Fighter
+        TestFighter fighter = new TestFighter();
+
+        check(
+            "TestFighter implements Fighter",
+            fighter instanceof Fighter
         );
 
         check(
-            "Melee is true",
-            fist.isMelee()
-        );
-
-        // TEST 6: Check attack sounds and newlines
-        System.out.println("\n--- Attack sounds ---");
-
-        String plasmaSound = captureAttack(plasma);
-        String fistSound = captureAttack(fist);
-
-        check(
-            "PlasmaRifle attack prints PIOU",
-            plasmaSound.equals("PIOU" + System.lineSeparator())
+            "getName() works",
+            fighter.getName().equals("Test Fighter")
         );
 
         check(
-            "PowerFist attack prints SBAM",
-            fistSound.equals("SBAM" + System.lineSeparator())
-        );
-
-        // TEST 7: Both attack methods are declared in their own classes
-        check(
-            "PlasmaRifle overrides attack()",
-            PlasmaRifle.class.getDeclaredMethod("attack")
-                .getDeclaringClass() == PlasmaRifle.class
+            "getAp() works",
+            fighter.getAp() == 20
         );
 
         check(
-            "PowerFist overrides attack()",
-            PowerFist.class.getDeclaredMethod("attack")
-                .getDeclaringClass() == PowerFist.class
+            "getHp() works",
+            fighter.getHp() == 100
         );
 
         // SUMMARY
