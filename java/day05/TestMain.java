@@ -1,20 +1,7 @@
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-
-// A small child class used only for testing Weapon
-class TestWeapon extends Weapon {
-
-    public TestWeapon(String name, int apcost, int damage, boolean melee) {
-        super(name, apcost, damage, melee);
-    }
-
-    @Override
-    public void attack() {
-        System.out.println("TEST ATTACK");
-    }
-}
 
 public class TestMain {
 
@@ -32,143 +19,134 @@ public class TestMain {
         }
     }
 
+    // Captures everything printed by a weapon's attack() method
+    public static String captureAttack(Weapon weapon) {
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+        try {
+            System.setOut(new PrintStream(output));
+            weapon.attack();
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        return output.toString();
+    }
+
     public static void main(String[] args) throws Exception {
 
-        System.out.println("===== EXERCISE 01: WEAPON TESTS =====\n");
+        System.out.println("===== EXERCISE 02: WEAPON TESTS =====\n");
 
-        // TEST 1: Weapon must be abstract
+        // TEST 1: Both classes inherit from Weapon
         check(
-            "Weapon is an abstract class",
-            Modifier.isAbstract(Weapon.class.getModifiers())
-        );
-
-        // TEST 2: Check attributes and their types
-        String[] fieldNames = {"name", "apcost", "damage", "melee"};
-        Class<?>[] fieldTypes = {
-            String.class,
-            int.class,
-            int.class,
-            boolean.class
-        };
-
-        for (int i = 0; i < fieldNames.length; i++) {
-
-            Field field = Weapon.class.getDeclaredField(fieldNames[i]);
-
-            check(
-                fieldNames[i] + " has the correct type",
-                field.getType() == fieldTypes[i]
-            );
-
-            check(
-                fieldNames[i] + " is protected",
-                Modifier.isProtected(field.getModifiers())
-            );
-        }
-
-        // TEST 3: Constructor must be protected
-        Constructor<?> constructor = Weapon.class.getDeclaredConstructor(
-            String.class,
-            int.class,
-            int.class,
-            boolean.class
+            "PlasmaRifle extends Weapon",
+            Weapon.class.isAssignableFrom(PlasmaRifle.class)
         );
 
         check(
-            "Constructor is protected",
-            Modifier.isProtected(constructor.getModifiers())
+            "PowerFist extends Weapon",
+            Weapon.class.isAssignableFrom(PowerFist.class)
+        );
+
+        // TEST 2: Both classes have public constructors without parameters
+        Constructor<?> plasmaConstructor =
+            PlasmaRifle.class.getDeclaredConstructor();
+
+        Constructor<?> fistConstructor =
+            PowerFist.class.getDeclaredConstructor();
+
+        check(
+            "PlasmaRifle has a public no-argument constructor",
+            Modifier.isPublic(plasmaConstructor.getModifiers())
         );
 
         check(
-            "Constructor is not public",
-            !Modifier.isPublic(constructor.getModifiers())
+            "PowerFist has a public no-argument constructor",
+            Modifier.isPublic(fistConstructor.getModifiers())
         );
 
-        // TEST 4: Create a child object and test constructor values
-        TestWeapon weapon = new TestWeapon(
-            "Test Weapon",
-            5,
-            21,
-            false
+        // TEST 3: Create both weapons
+        PlasmaRifle plasma = new PlasmaRifle();
+        PowerFist fist = new PowerFist();
+
+        // TEST 4: PlasmaRifle attributes
+        System.out.println("\n--- PlasmaRifle ---");
+
+        check(
+            "Name is Plasma Rifle",
+            plasma.getName().equals("Plasma Rifle")
         );
 
         check(
-            "getName() returns the correct name",
-            weapon.getName().equals("Test Weapon")
+            "AP cost is 5",
+            plasma.getApcost() == 5
         );
 
         check(
-            "getApcost() returns the correct AP cost",
-            weapon.getApcost() == 5
+            "Damage is 21",
+            plasma.getDamage() == 21
         );
 
         check(
-            "getDamage() returns the correct damage",
-            weapon.getDamage() == 21
+            "Melee is false",
+            !plasma.isMelee()
+        );
+
+        // TEST 5: PowerFist attributes
+        System.out.println("\n--- PowerFist ---");
+
+        check(
+            "Name is Power Fist",
+            fist.getName().equals("Power Fist")
         );
 
         check(
-            "isMelee() returns the correct boolean",
-            !weapon.isMelee()
-        );
-
-        // TEST 5: Check that all getters are public
-        String[] getterNames = {
-            "getName",
-            "getApcost",
-            "getDamage",
-            "isMelee"
-        };
-
-        for (String getterName : getterNames) {
-
-            Method method = Weapon.class.getDeclaredMethod(getterName);
-
-            check(
-                getterName + "() is public",
-                Modifier.isPublic(method.getModifiers())
-            );
-        }
-
-        // TEST 6: Check that no setters exist
-        boolean hasSetter = false;
-
-        for (Method method : Weapon.class.getDeclaredMethods()) {
-            if (method.getName().startsWith("set")
-                    && method.getParameterCount() == 1) {
-                hasSetter = true;
-            }
-        }
-
-        check("Weapon has no setters", !hasSetter);
-
-        // TEST 7: Check attack() method
-        Method attack = Weapon.class.getDeclaredMethod("attack");
-
-        check(
-            "attack() is public",
-            Modifier.isPublic(attack.getModifiers())
+            "AP cost is 8",
+            fist.getApcost() == 8
         );
 
         check(
-            "attack() is abstract",
-            Modifier.isAbstract(attack.getModifiers())
+            "Damage is 50",
+            fist.getDamage() == 50
         );
 
         check(
-            "attack() returns void",
-            attack.getReturnType() == void.class
+            "Melee is true",
+            fist.isMelee()
+        );
+
+        // TEST 6: Check attack sounds and newlines
+        System.out.println("\n--- Attack sounds ---");
+
+        String plasmaSound = captureAttack(plasma);
+        String fistSound = captureAttack(fist);
+
+        check(
+            "PlasmaRifle attack prints PIOU",
+            plasmaSound.equals("PIOU" + System.lineSeparator())
         );
 
         check(
-            "attack() has no parameters",
-            attack.getParameterCount() == 0
+            "PowerFist attack prints SBAM",
+            fistSound.equals("SBAM" + System.lineSeparator())
         );
 
-        // TEST 8: Child class implements attack()
-        System.out.println("\nTesting inherited attack():");
-        weapon.attack();
+        // TEST 7: Both attack methods are declared in their own classes
+        check(
+            "PlasmaRifle overrides attack()",
+            PlasmaRifle.class.getDeclaredMethod("attack")
+                .getDeclaringClass() == PlasmaRifle.class
+        );
 
+        check(
+            "PowerFist overrides attack()",
+            PowerFist.class.getDeclaredMethod("attack")
+                .getDeclaringClass() == PowerFist.class
+        );
+
+        // SUMMARY
         System.out.println("\n===== TEST SUMMARY =====");
         System.out.println("Passed: " + passed);
         System.out.println("Failed: " + failed);
