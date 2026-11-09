@@ -1,22 +1,16 @@
-// No "package" line: this class lives in the DEFAULT package (project root) 
-// It can USE classes of named packages
+// Default package (no package line)
+// It can USE classes of named packages,
 // but a class inside a named package can never import a class of the default package
-// exactly as the PDF delivery path "./Astronaut.java" says
-
 
 public class Astronaut {
 
-    // Shared counter (static): 1 copy for all Astronauts same trick as Mars.id
     private static int nextId = 0;
 
     private final String name;
-    private int snacks; // an int is 0 by default; it is set explicitly in the constructor
-    private String destination; // an object reference is null by default
+    private int snacks;
+    private String destination;
     private final int id;
 
-    // The only constructor takes the name: since no other constructor exists,
-    // it is IMPOSSIBLE to create an Astronaut without a name ("it is mandatory")
-    // new Astronaut() would not compile
     public Astronaut(String name) {
         this.name = name;
         this.snacks = 0;
@@ -25,7 +19,6 @@ public class Astronaut {
         System.out.println(name + " ready for launch!");
     }
 
-    // Getters only: no setter exists, so outside code cannot change these values
     public String getName() {
         return this.name;
     }
@@ -42,11 +35,10 @@ public class Astronaut {
         return this.id;
     }
 
-    // OPTIONAL PARAMETER = OVERLOADING (as on Day 02): 3 methods but one name 
-    // We write the FULL class names (planet.Mars / chocolate.Mars) because both classes are called Mars
-    // importing both would be ambiguous so The compiler picks the right version from the argument's type
-    // (Careful: never name a variable "planet" or "chocolate" here, it would hide the package
-
+    // OPTIONAL PARAMETER = OVERLOADING (as on Day 02): three methods, one name
+    // We write the FULL class names (planet.Mars / chocolate.Mars) because both classes are called Mars: 
+    // importing both would be ambiguous. The compiler picks the right version from the argument's type
+    // Careful: never name a variable "planet" or "chocolate" here, it would hide the package
     // doActions()  -> no parameter
     public void doActions() {
         System.out.println(this.name + ": Nothing to do.");
@@ -76,9 +68,9 @@ public class Astronaut {
         remindAboutSnacks();
     }
 
-    // Helper shared by all versions: 
-    // after each previous sentence, if the astronaut has no destination, display the snack reminder
-    // It reads the state AFTER the update, so the snack count includes the chocolate just received.
+    // Helper shared by all versions: "after each previous sentence, if the astronaut
+    // has no destination, display the snack reminder". It reads the state AFTER the update,
+    // so the snack count includes the chocolate just received
     private void remindAboutSnacks() {
         if (this.destination == null) {
             System.out.println(this.name + ": I may have done nothing, but I have "

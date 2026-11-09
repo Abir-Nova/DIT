@@ -6,7 +6,7 @@ public class Mars {
 
     private final String landingSite;
 
-    // The landing site is given at creation as required
+    // The landing site is given at creation
     public Mars(String landingSite) {
         this.landingSite = landingSite;
     }
@@ -15,9 +15,3 @@ public class Mars {
         return this.landingSite;
     }
 }
-
-
-
-
-
-
