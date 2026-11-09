@@ -1,7 +1,7 @@
 // Character: ABSTRACT parent of every hero (Warrior, Mage)
 // Abstract = it can only be used through a child class
 
-public abstract class Character{
+public abstract class Character implements Movable {
 
     // Protected attributes: visible to the children (Warrior, Mage) and hidden from the outside world
     protected String name;
@@ -42,5 +42,24 @@ public abstract class Character{
     // The children reuse it through super.attack(...)
     public void attack(String weapon) {
         System.out.println(this.name + ": Rrrrrrrrr....");
+    }
+
+    // movements 
+
+    @Override
+    public void moveRight() {
+        System.out.println(this.name + ": moves right");
+    }
+    @Override
+    public void moveLeft() {
+        System.out.println(this.name + ": moves left");
+    }
+    @Override
+    public void moveForward() {
+        System.out.println(this.name + ": moves forward");
+    }
+    @Override
+    public void moveBack() {
+        System.out.println(this.name + ": moves back");
     }
 }
