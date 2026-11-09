@@ -12,7 +12,7 @@ public abstract class Character implements Movable {
     // "final" = a CONSTANT: it is given once in the constructor and can never change afterwards
     protected final String RPGClass;
 
-    // Protected constructor: name first, RPGClass second. Only the children can call it through super(...)
+    // Protected constructor: name first, RPGClass second. only the children can call it through super(...)
     protected Character(String name, String RPGClass) {
         this.name = name;
         this.RPGClass = RPGClass;
@@ -61,5 +61,11 @@ public abstract class Character implements Movable {
     @Override
     public void moveBack() {
         System.out.println(this.name + ": moves back");
+    }
+
+    // EX05 : 
+    // "final" = this method can not be overridden by Warrior or Mage: everybody draws a weapon the same way
+    public final void unsheathe() {
+        System.out.println(this.name + ": unsheathes his weapon.");
     }
 }

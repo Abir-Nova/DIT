@@ -13,7 +13,7 @@ public class Mage extends Character {
 
     @Override
     public void attack(String weapon) {
-        // A mage can ONLY attack with magic or a wand: anything else does nothing
+        // A mage can only attack with magic or a wand: anything else does nothing
         if ("magic".equals(weapon) || "wand".equals(weapon)) {
             super.attack(weapon);
             System.out.println(this.name + ": Feel the power of my " + weapon + "!");
