@@ -68,6 +68,20 @@ public class Astronaut {
         remindAboutSnacks();
     }
 
+    // NEW in Ex07: a mission to Phobos.
+    // The statement does not detail the behaviour, so this is an ASSUMPTION: it works like
+    // a mission to the planet (message + the moon's landing site becomes the destination).
+    // Phobos lives in another package, so it is referenced by its full name.
+    public void doActions(planet.moon.Phobos phobos) {
+        if (phobos == null) {
+            doActions();
+            return;
+        }
+        System.out.println(this.name + ": Started a mission!");
+        this.destination = phobos.getLandingSite();
+        remindAboutSnacks();
+    }
+
     // Helper shared by all versions: "after each previous sentence, if the astronaut
     // has no destination, display the snack reminder". It reads the state AFTER the update,
     // so the snack count includes the chocolate just received

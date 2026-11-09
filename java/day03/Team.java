@@ -51,4 +51,45 @@ public class Team {
         line.append(".");
         System.out.println(line);
     }
+
+    // ---------------- Ex07 ----------------
+    // The team's doActions is overloaded like the Astronaut's one.
+    // No parameter: the TEAM speaks, ONCE. It must not call the astronauts' doActions(),
+    // otherwise each astronaut would display its own "Nothing to do.".
+    public void doActions() {
+        System.out.println(this.name + ": Nothing to do.");
+    }
+
+    // With a parameter: every member runs its own doActions with that same argument.
+    // For a chocolate.Mars, each astronaut gets a full chocolate (snacks + 1 each),
+    // since the same object is simply handed to everyone.
+    public void doActions(planet.Mars mars) {
+        if (mars == null) {
+            doActions();
+            return;
+        }
+        for (Astronaut a : this.members) {
+            a.doActions(mars);
+        }
+    }
+
+    public void doActions(chocolate.Mars bar) {
+        if (bar == null) {
+            doActions();
+            return;
+        }
+        for (Astronaut a : this.members) {
+            a.doActions(bar);
+        }
+    }
+
+    public void doActions(planet.moon.Phobos phobos) {
+        if (phobos == null) {
+            doActions();
+            return;
+        }
+        for (Astronaut a : this.members) {
+            a.doActions(phobos);
+        }
+    }
 }
