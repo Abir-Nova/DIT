@@ -1,9 +1,16 @@
 // Warrior: "extends Character" = a Warrior IS a Character and inherits everything that is not private
+
 public class Warrior extends Character {
+
     public Warrior(String name) {
-        
-        // super(...) calls the Character constructor first: the name and the constant RPGClass "Warrior"
-        super(name, "Warrior");
+        // Without capacity: use the default value 0
+        this(name, 0);
+    }
+
+    // EX05: constructor with the capacity (for a Warrior it is the power)
+    public Warrior(String name, int capacity) {
+        // super(...) calls the Character constructor first: the name, the constant RPGClass "Warrior" and the capacity
+        super(name, "Warrior", capacity);
         // Then the Warrior values replace the defaults of Character
         this.life = 100;
         this.strength = 10;
@@ -29,14 +36,17 @@ public class Warrior extends Character {
     public void moveRight() {
         System.out.println(this.name + ": moves right like a bad boy.");
     }
+
     @Override
     public void moveLeft() {
         System.out.println(this.name + ": moves left like a bad boy.");
     }
+
     @Override
     public void moveBack() {
         System.out.println(this.name + ": moves back like a bad boy.");
     }
+
     @Override
     public void moveForward() {
         System.out.println(this.name + ": moves forward like a bad boy.");

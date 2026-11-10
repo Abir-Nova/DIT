@@ -2,8 +2,13 @@
 public class Mage extends Character {
     
     public Mage(String name) {
-        // The name and the constant RPGClass "Mage" go to the Character constructor
-        super(name, "Mage");
+        // Without capacity: use the default value 0
+        this(name, 0);
+    }
+    // EX05: constructor with the capacity (for a Mage it is the magnetism)
+    public Mage(String name, int capacity) {
+        // The name, the constant RPGClass "Mage" and the capacity go to the Character constructor
+        super(name, "Mage", capacity);
         this.life = 70;
         this.strength = 3;
         this.agility = 10;
