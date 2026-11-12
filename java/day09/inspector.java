@@ -1,5 +1,6 @@
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 // Inspects a class at runtime with reflection
 
@@ -31,5 +32,11 @@ public class Inspector<T> {
         for (Field field : fields) {
             System.out.println("- " + field.getName());
         }
+    }
+
+    // Creates a new instance of the inspected class with its default constructor
+    // Every exception that may occur is thrown again to the caller
+    public T createInstance() throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        return inspectedClass.getDeclaredConstructor().newInstance();
     }
 }
